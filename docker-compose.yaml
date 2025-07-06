@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:15
+    restart: always
+    env_file:
+      - ./config/.env
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=123456
+    ports:
+      - 5433:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - jobio-backend
+
+volumes:
+  postgres_data:
+
+networks:
+  jobio-backend:

@@ -1,0 +1,1 @@
+export * from './data-access-mapper.interface';
