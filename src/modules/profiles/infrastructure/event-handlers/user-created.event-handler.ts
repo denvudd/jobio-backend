@@ -1,10 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
 
 import { EventsHandler } from '~lib/nest-event-driven';
-import { UserCreatedEvent } from '~modules/auth/domain/events/user-created.event';
 
-import { ICreateUserProfileUseCase } from '../../application/use-cases/create-user-profile/create-user-profile-use-case.interface';
-import { ProfilesDiToken } from '../../constants';
+import { UserCreatedEvent } from '~modules/auth/domain/events/user-created.event';
+import { ICreateUserProfileUseCase } from '~modules/profiles/application/use-cases/create-user-profile/create-user-profile-use-case.interface';
+import { ProfilesDiToken } from '~modules/profiles/constants';
 
 @Injectable()
 @EventsHandler(UserCreatedEvent)

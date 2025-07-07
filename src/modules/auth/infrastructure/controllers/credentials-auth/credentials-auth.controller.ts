@@ -1,7 +1,8 @@
 import { Body, Controller, Inject, Post, UseGuards } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 
-import { EmailPasswordCredentialsDto } from '~modules/auth/application/dto/email-password-credentials.dto';
+import { SignInCredentialsDto } from '~modules/auth/application/dto/sign-in-credentials.dto';
+import { SignUpCredentialsDto } from '~modules/auth/application/dto/sign-up-credentials.dto';
 import { IPerformPostAuthUseCase } from '~modules/auth/application/use-cases/perform-post-auth/perform-post-auth.interface';
 import { ISignUpByEmailPasswordUseCase } from '~modules/auth/application/use-cases/sign-up-by-email-password/sign-up-by-email-password-use-case.interface';
 import { AuthDiToken } from '~modules/auth/constants';
@@ -25,13 +26,13 @@ export class CredentialsAuthController {
     @Inject(AuthDiToken.PERFORM_POST_AUTH_USE_CASE) private readonly performPostAuthUseCase: IPerformPostAuthUseCase,
   ) {}
 
-  @ApiOperation({ 
+  @ApiOperation({
     operationId: 'signIn',
     summary: 'Sign in',
-    description: 'Sign in with email and password credentials'
+    description: 'Sign in with email and password credentials',
   })
   @ApiBody({
-    type: EmailPasswordCredentialsDto,
+    type: SignInCredentialsDto,
   })
   @Post('/sign-in')
   @UseGuards(CredentialsLoginAuthGuard)
@@ -40,13 +41,16 @@ export class CredentialsAuthController {
     return this.authCredentialsMapper.sessionToTokenResult(session);
   }
 
-  @ApiOperation({ 
+  @ApiOperation({
     operationId: 'signUp',
     summary: 'Sign up',
-    description: 'Create a new user account with email and password'
+    description: 'Create a new user account with email and password',
+  })
+  @ApiBody({
+    type: SignUpCredentialsDto,
   })
   @Post('/sign-up')
-  public async signUp(@Body() credentials: EmailPasswordCredentialsDto) {
+  public async signUp(@Body() credentials: SignUpCredentialsDto) {
     await this.signUpByEmailPasswordUseCase.execute(credentials);
   }
 }

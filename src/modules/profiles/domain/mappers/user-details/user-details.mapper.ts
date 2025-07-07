@@ -1,7 +1,7 @@
-import { IDataAccessMapper } from '~shared/domain/mappers/data-access-mapper.interface';
+import { UserDetails } from '~modules/profiles/domain/entities/user-details.entity';
 
-import { UserDetails } from '../../entities/user-details.entity';
 import { UserRole } from '~shared/domain/enums/user-role.enum';
+import { IDataAccessMapper } from '~shared/domain/mappers/data-access-mapper.interface';
 
 export interface IUserDetailsDataAccess {
   id: string;
@@ -15,7 +15,7 @@ export interface IUserDetailsDataAccess {
 export class UserDetailsMapper implements IDataAccessMapper<UserDetails, IUserDetailsDataAccess> {
   toDomain(persistence: IUserDetailsDataAccess): UserDetails {
     return UserDetails.builder(persistence.id, persistence.userId, persistence.role as UserRole)
-      .fullName(persistence.fullName || undefined)
+      .fullName(persistence.fullName)
       .createdAt(persistence.createdAt)
       .updatedAt(persistence.updatedAt)
       .build();
@@ -31,4 +31,4 @@ export class UserDetailsMapper implements IDataAccessMapper<UserDetails, IUserDe
       updatedAt: entity.updatedAt,
     };
   }
-} 
+}

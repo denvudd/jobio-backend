@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 
 import { AuthDiToken } from '~modules/auth/constants';
+
 import { Command } from '~shared/application/CQS/command.abstract';
 
 import { UpdateUserEmailDto } from '../../dto/update-user-email.dto';

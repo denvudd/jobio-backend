@@ -1,4 +1,5 @@
 import { IsEnum, IsOptional, IsString } from 'class-validator';
+
 import { UserRole } from '~shared/domain/enums/user-role.enum';
 
 export class CreateUserProfileDto {
@@ -8,4 +9,4 @@ export class CreateUserProfileDto {
 
   @IsEnum(UserRole)
   role: UserRole;
-} 
+}

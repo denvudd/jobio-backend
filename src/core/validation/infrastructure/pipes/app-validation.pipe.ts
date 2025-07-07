@@ -1,6 +1,6 @@
 import { Injectable, PipeTransform, ValidationPipe } from '@nestjs/common';
 
-import { ValidationFailedException } from '../../domain/exceptions/validation-failed/validation-failed.exception';
+import { ValidationFailedException } from '~core/validation/domain/exceptions/validation-failed/validation-failed.exception';
 
 @Injectable()
 export class AppValidationPipe extends ValidationPipe implements PipeTransform {

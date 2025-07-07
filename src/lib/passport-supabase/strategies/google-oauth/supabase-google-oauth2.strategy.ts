@@ -1,7 +1,7 @@
 import { IOAuth2StrategyOptions } from 'src/lib/passport-oauth';
 
-import { IAuthResult, ISupabaseClientOptions } from '../../core';
-import { SupabaseBaseOauth2Strategy } from '../supabase-base-oauth2';
+import { IAuthResult, ISupabaseClientOptions } from '~lib/passport-supabase/core';
+import { SupabaseBaseOauth2Strategy } from '~lib/passport-supabase/strategies/supabase-base-oauth2';
 
 export interface ISupabaseGoogleOAuthStrategyOptions extends ISupabaseClientOptions {
   clientId: string;

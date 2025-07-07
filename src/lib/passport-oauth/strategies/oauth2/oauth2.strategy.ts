@@ -3,7 +3,7 @@ import { OAuth2 } from 'oauth';
 import { Strategy } from 'passport-strategy';
 import { URL } from 'url';
 
-import { PassportOauth2Error } from '../../errors/passport-oauth2.error';
+import { PassportOauth2Error } from '~lib/passport-oauth/errors/passport-oauth2.error';
 
 export interface IOAuth2StrategyOptions {
   authorizationURL: string;

@@ -2,6 +2,7 @@ import { Inject, Injectable, Scope } from '@nestjs/common';
 import { SupabaseClient, createClient } from '@supabase/supabase-js';
 
 import { Session } from '~modules/auth/domain/value-objects/session.value';
+
 import { IAppConfigService } from '~shared/application/services/app-config-service.interface';
 import { BaseToken } from '~shared/constants';
 

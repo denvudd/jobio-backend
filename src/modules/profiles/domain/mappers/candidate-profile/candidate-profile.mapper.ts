@@ -1,6 +1,6 @@
-import { IDataAccessMapper } from '~shared/domain/mappers/data-access-mapper.interface';
+import { CandidateProfile } from '~modules/profiles/domain/entities/candidate-profile.entity';
 
-import { CandidateProfile } from '../../entities/candidate-profile.entity';
+import { IDataAccessMapper } from '~shared/domain/mappers/data-access-mapper.interface';
 
 export interface ICandidateProfileDataAccess {
   id: string;
@@ -24,18 +24,18 @@ export interface ICandidateProfileDataAccess {
 export class CandidateProfileMapper implements IDataAccessMapper<CandidateProfile, ICandidateProfileDataAccess> {
   toDomain(persistence: ICandidateProfileDataAccess): CandidateProfile {
     return CandidateProfile.builder(persistence.id, persistence.userDetailsId)
-      .position(persistence.position || undefined)
+      .position(persistence.position)
       .skills(persistence.skills)
-      .experience(persistence.experience || undefined)
-      .salaryExpectations(persistence.salaryExpectations || undefined)
-      .englishLevel(persistence.englishLevel || undefined)
-      .experienceDescription(persistence.experienceDescription || undefined)
-      .accomplishmentsDescription(persistence.accomplishmentsDescription || undefined)
-      .expectationsDescription(persistence.expectationsDescription || undefined)
-      .employmentOptions(persistence.employmentOptions || undefined)
-      .hourlyRate(persistence.hourlyRate || undefined)
-      .preferredLanguage(persistence.preferredLanguage || undefined)
-      .preferredCommunication(persistence.preferredCommunication || undefined)
+      .experience(persistence.experience)
+      .salaryExpectations(persistence.salaryExpectations)
+      .englishLevel(persistence.englishLevel)
+      .experienceDescription(persistence.experienceDescription)
+      .accomplishmentsDescription(persistence.accomplishmentsDescription)
+      .expectationsDescription(persistence.expectationsDescription)
+      .employmentOptions(persistence.employmentOptions)
+      .hourlyRate(persistence.hourlyRate)
+      .preferredLanguage(persistence.preferredLanguage)
+      .preferredCommunication(persistence.preferredCommunication)
       .createdAt(persistence.createdAt)
       .updatedAt(persistence.updatedAt)
       .build();
@@ -61,4 +61,4 @@ export class CandidateProfileMapper implements IDataAccessMapper<CandidateProfil
       updatedAt: entity.updatedAt,
     };
   }
-} 
+}

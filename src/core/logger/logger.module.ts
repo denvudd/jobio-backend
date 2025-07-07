@@ -3,7 +3,7 @@ import { INQUIRER } from '@nestjs/core';
 import { WinstonModule, utilities } from 'nest-winston';
 import * as winston from 'winston';
 
-import { CoreToken } from '../constants';
+import { CoreToken } from '~core/constants';
 
 @Global()
 @Module({

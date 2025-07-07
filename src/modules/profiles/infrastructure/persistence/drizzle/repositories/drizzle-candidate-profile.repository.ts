@@ -3,12 +3,14 @@ import { eq } from 'drizzle-orm';
 import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 
 import { POSTGRES_DB } from '~lib/drizzle-postgres';
+
 import { CandidateProfile } from '~modules/profiles/domain/entities/candidate-profile.entity';
 import {
   CandidateProfileMapper,
   ICandidateProfileDataAccess,
 } from '~modules/profiles/domain/mappers/candidate-profile/candidate-profile.mapper';
 import { ICandidateProfileRepository } from '~modules/profiles/domain/repositories/candidate-profile-repository.interface';
+
 import { IDataAccessMapper } from '~shared/domain/mappers';
 import {
   DrizzleRepository,

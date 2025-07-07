@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 
 import { AuthModule } from '~modules/auth/auth.module';
+
 import { SharedModule } from '~shared/shared.module';
 
 import { CreateUserProfileUseCase } from './application/use-cases/create-user-profile/create-user-profile.use-case';
-import { GetUserProfileUseCase } from './application/use-cases/get-user-profile/get-user-profile.use-case';
+import { GetUserProfileWithAuthUseCase } from './application/use-cases/get-user-profile-with-auth/get-user-profile-with-auth.use-case';
 import { UpdateCandidateProfileUseCase } from './application/use-cases/update-candidate-profile/update-candidate-profile.use-case';
 import { UpdateRecruiterProfileUseCase } from './application/use-cases/update-recruiter-profile/update-recruiter-profile.use-case';
 import { ProfilesDiToken } from './constants';
@@ -27,7 +28,7 @@ import { DrizzleUserDetailsRepository } from './infrastructure/persistence/drizz
     { provide: ProfilesDiToken.CANDIDATE_PROFILE_REPOSITORY, useClass: DrizzleCandidateProfileRepository },
     { provide: ProfilesDiToken.RECRUITER_PROFILE_REPOSITORY, useClass: DrizzleRecruiterProfileRepository },
     { provide: ProfilesDiToken.CREATE_USER_PROFILE_USE_CASE, useClass: CreateUserProfileUseCase },
-    { provide: ProfilesDiToken.GET_USER_PROFILE_USE_CASE, useClass: GetUserProfileUseCase },
+    { provide: ProfilesDiToken.GET_USER_PROFILE_WITH_AUTH_USE_CASE, useClass: GetUserProfileWithAuthUseCase },
     { provide: ProfilesDiToken.UPDATE_CANDIDATE_PROFILE_USE_CASE, useClass: UpdateCandidateProfileUseCase },
     { provide: ProfilesDiToken.UPDATE_RECRUITER_PROFILE_USE_CASE, useClass: UpdateRecruiterProfileUseCase },
     UserCreatedEventHandler,
@@ -35,7 +36,7 @@ import { DrizzleUserDetailsRepository } from './infrastructure/persistence/drizz
   controllers: [ProfilesController],
   exports: [
     ProfilesDiToken.CREATE_USER_PROFILE_USE_CASE,
-    ProfilesDiToken.GET_USER_PROFILE_USE_CASE,
+    ProfilesDiToken.GET_USER_PROFILE_WITH_AUTH_USE_CASE,
     ProfilesDiToken.UPDATE_CANDIDATE_PROFILE_USE_CASE,
     ProfilesDiToken.UPDATE_RECRUITER_PROFILE_USE_CASE,
     UserCreatedEventHandler,

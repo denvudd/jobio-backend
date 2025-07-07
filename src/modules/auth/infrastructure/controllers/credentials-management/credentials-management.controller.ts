@@ -30,10 +30,10 @@ export class CredentialsManagementController {
   ) {}
 
   @AuthenticateSupabaseClient()
-  @ApiOperation({ 
+  @ApiOperation({
     operationId: 'changePassword',
     summary: 'Change password',
-    description: 'Change the password for the authenticated user'
+    description: 'Change the password for the authenticated user',
   })
   @Post('/password')
   public async changePassword(@Body() dto: UpdateUserPasswordDto, @UserId() userId: string) {
@@ -41,10 +41,10 @@ export class CredentialsManagementController {
   }
 
   @AuthenticateSupabaseClient()
-  @ApiOperation({ 
+  @ApiOperation({
     operationId: 'changeEmail',
     summary: 'Change email',
-    description: 'Change the email for the authenticated user'
+    description: 'Change the email for the authenticated user',
   })
   @Post('/email')
   public async changeEmail(@Body() dto: UpdateUserEmailDto) {
@@ -52,10 +52,10 @@ export class CredentialsManagementController {
   }
 
   @PublicRoute()
-  @ApiOperation({ 
+  @ApiOperation({
     operationId: 'sendPasswordResetConfirmation',
     summary: 'Send password reset confirmation',
-    description: 'Send a password reset confirmation email to the user'
+    description: 'Send a password reset confirmation email to the user',
   })
   @Post('/password/send-reset-confirmation')
   public async sendPasswordResetConfirmation(@Body() dto: SendResetPasswordConfirmationDto) {
@@ -63,10 +63,10 @@ export class CredentialsManagementController {
   }
 
   @AuthenticateSupabaseClient()
-  @ApiOperation({ 
+  @ApiOperation({
     operationId: 'resetPassword',
     summary: 'Reset password',
-    description: 'Reset the password for the authenticated user'
+    description: 'Reset the password for the authenticated user',
   })
   @Post('/password/reset')
   public async resetPassword(@Body() dto: ResetPasswordDto, @ReqUser() user: User) {

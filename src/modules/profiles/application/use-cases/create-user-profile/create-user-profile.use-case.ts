@@ -7,6 +7,7 @@ import { UserDetails } from '~modules/profiles/domain/entities/user-details.enti
 import { ICandidateProfileRepository } from '~modules/profiles/domain/repositories/candidate-profile-repository.interface';
 import { IRecruiterProfileRepository } from '~modules/profiles/domain/repositories/recruiter-profile-repository.interface';
 import { IUserDetailsRepository } from '~modules/profiles/domain/repositories/user-details-repository.interface';
+
 import { Command } from '~shared/application/CQS/command.abstract';
 import { UserRole } from '~shared/domain/enums/user-role.enum';
 
@@ -34,9 +35,7 @@ export class CreateUserProfileUseCase
 
     // Create user details
     const userDetailsId = crypto.randomUUID();
-    const userDetails = UserDetails.builder(userDetailsId, userId, role)
-      .fullName(fullName)
-      .build();
+    const userDetails = UserDetails.builder(userDetailsId, userId, role).fullName(fullName).build();
     const savedUserDetails = await this.userDetailsRepository.create(userDetails);
 
     // Create corresponding profile

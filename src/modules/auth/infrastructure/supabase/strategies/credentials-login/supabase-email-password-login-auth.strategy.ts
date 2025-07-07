@@ -3,8 +3,9 @@ import { PassportStrategy } from '@nestjs/passport';
 import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
 
-import { EmailPasswordCredentialsDto } from '~modules/auth/application/dto/email-password-credentials.dto';
+import { SignInCredentialsDto } from '~modules/auth/application/dto/sign-in-credentials.dto';
 import { AuthGuardToken } from '~modules/auth/constants';
+
 import { IAppConfigService } from '~shared/application/services/app-config-service.interface';
 import { BaseToken } from '~shared/constants';
 
@@ -27,7 +28,7 @@ export class SupabaseEmailPasswordLoginAuthStrategy extends PassportStrategy(Str
   }
 
   private async validateDto(dto: unknown): Promise<ICredentials> {
-    const dtoInstance = plainToInstance(EmailPasswordCredentialsDto, dto);
+    const dtoInstance = plainToInstance(SignInCredentialsDto, dto);
     const errors = await validate(dtoInstance);
 
     if (errors.length) {

@@ -1,5 +1,6 @@
+import { UpdateCandidateProfileDto } from '~modules/profiles/application/dto/update-candidate-profile.dto';
+
 import { IUseCase } from '~shared/application/use-cases/use-case.interface';
 
-import { UpdateCandidateProfileDto } from '../../dto/update-candidate-profile.dto';
-
-export interface IUpdateCandidateProfileUseCase extends IUseCase<UpdateCandidateProfileDto & { userId: string }, void> {} 
+export interface IUpdateCandidateProfileUseCase
+  extends IUseCase<UpdateCandidateProfileDto & { userId: string }, void> {}

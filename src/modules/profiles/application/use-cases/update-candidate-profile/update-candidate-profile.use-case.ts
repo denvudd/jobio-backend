@@ -1,12 +1,12 @@
 import { Inject, Injectable } from '@nestjs/common';
 
+import { UpdateCandidateProfileDto } from '~modules/profiles/application/dto/update-candidate-profile.dto';
+import { IUpdateCandidateProfileUseCase } from '~modules/profiles/application/use-cases/update-candidate-profile/update-candidate-profile-use-case.interface';
 import { ProfilesDiToken } from '~modules/profiles/constants';
-import { Command } from '~shared/application/CQS/command.abstract';
+import { ICandidateProfileRepository } from '~modules/profiles/domain/repositories/candidate-profile-repository.interface';
+import { IUserDetailsRepository } from '~modules/profiles/domain/repositories/user-details-repository.interface';
 
-import { UpdateCandidateProfileDto } from '../../dto/update-candidate-profile.dto';
-import { ICandidateProfileRepository } from '../../../domain/repositories/candidate-profile-repository.interface';
-import { IUserDetailsRepository } from '../../../domain/repositories/user-details-repository.interface';
-import { IUpdateCandidateProfileUseCase } from './update-candidate-profile-use-case.interface';
+import { Command } from '~shared/application/CQS/command.abstract';
 
 @Injectable()
 export class UpdateCandidateProfileUseCase
@@ -39,7 +39,6 @@ export class UpdateCandidateProfileUseCase
       throw new Error('Candidate profile not found');
     }
 
-    // Обновляем профиль с новыми данными
     const updatedProfile = new (candidateProfile.constructor as any)(
       candidateProfile.id,
       candidateProfile.userDetailsId,
@@ -56,9 +55,9 @@ export class UpdateCandidateProfileUseCase
       updateData.preferredLanguage ?? candidateProfile.preferredLanguage,
       updateData.preferredCommunication ?? candidateProfile.preferredCommunication,
       candidateProfile.createdAt,
-      new Date(), // Обновляем updatedAt
+      new Date(),
     );
 
     await this.candidateProfileRepository.save(updatedProfile);
   }
-} 
+}

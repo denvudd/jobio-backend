@@ -5,6 +5,7 @@ import { IUpdateRecruiterProfileUseCase } from '~modules/profiles/application/us
 import { ProfilesDiToken } from '~modules/profiles/constants';
 import { IRecruiterProfileRepository } from '~modules/profiles/domain/repositories/recruiter-profile-repository.interface';
 import { IUserDetailsRepository } from '~modules/profiles/domain/repositories/user-details-repository.interface';
+
 import { Command } from '~shared/application/CQS/command.abstract';
 import { UserRole } from '~shared/domain/enums/user-role.enum';
 

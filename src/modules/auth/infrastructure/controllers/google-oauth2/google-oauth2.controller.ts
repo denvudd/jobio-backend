@@ -6,6 +6,7 @@ import { IPerformPostAuthUseCase } from '~modules/auth/application/use-cases/per
 import { AuthDiToken } from '~modules/auth/constants';
 import { User } from '~modules/auth/domain/entities/user.entity';
 import { Session } from '~modules/auth/domain/value-objects/session.value';
+
 import { IAppConfigService } from '~shared/application/services/app-config-service.interface';
 import { BaseToken } from '~shared/constants';
 
@@ -24,10 +25,10 @@ export class GoogleOauth2Controller {
 
   @PublicRoute()
   @UseGuards(GoogleOauth2Guard)
-  @ApiOperation({ 
+  @ApiOperation({
     operationId: 'withGoogle',
     summary: 'Google OAuth2',
-    description: 'Initiate Google OAuth2 authentication flow'
+    description: 'Initiate Google OAuth2 authentication flow',
   })
   @Get('google')
   public async google() {}

@@ -3,12 +3,14 @@ import { eq } from 'drizzle-orm';
 import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 
 import { POSTGRES_DB } from '~lib/drizzle-postgres';
+
 import { UserDetails } from '~modules/profiles/domain/entities/user-details.entity';
 import {
   IUserDetailsDataAccess,
   UserDetailsMapper,
 } from '~modules/profiles/domain/mappers/user-details/user-details.mapper';
 import { IUserDetailsRepository } from '~modules/profiles/domain/repositories/user-details-repository.interface';
+
 import { UserRole } from '~shared/domain/enums/user-role.enum';
 import { IDataAccessMapper } from '~shared/domain/mappers';
 import {

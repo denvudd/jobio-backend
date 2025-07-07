@@ -20,4 +20,4 @@ export class UpdateRecruiterProfileDto {
   @IsString()
   @IsOptional()
   website?: string;
-} 
+}

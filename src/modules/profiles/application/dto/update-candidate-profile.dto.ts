@@ -49,4 +49,4 @@ export class UpdateCandidateProfileDto {
   @IsString()
   @IsOptional()
   preferredCommunication?: string;
-} 
+}

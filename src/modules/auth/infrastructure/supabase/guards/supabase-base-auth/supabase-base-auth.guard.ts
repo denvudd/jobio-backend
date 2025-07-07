@@ -5,6 +5,7 @@ import { AuthApiError } from '@supabase/supabase-js';
 import { Request } from 'express';
 
 import { AppException } from '~core/exceptions/domain/exceptions/base/app.exception';
+
 import { AuthException } from '~modules/auth/application/exceptions/auth.exception';
 import { InvalidAccessTokenException } from '~modules/auth/application/exceptions/invalid-access-token.exception';
 import { InvalidAuthResultException } from '~modules/auth/application/exceptions/invalid-auth-result.exception';

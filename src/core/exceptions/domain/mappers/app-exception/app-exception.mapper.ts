@@ -1,8 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 
-import { AppException } from '../../exceptions/base/app.exception';
-import { UnexpectedException } from '../../exceptions/unexpected-exception/unexpected.exception';
-import { EXCEPTION_STATUSES_TYPE, ExceptionType } from './exception-type';
+import { AppException } from '~core/exceptions/domain/exceptions/base/app.exception';
+import { UnexpectedException } from '~core/exceptions/domain/exceptions/unexpected-exception/unexpected.exception';
+import { EXCEPTION_STATUSES_TYPE, ExceptionType } from '~core/exceptions/domain/mappers/app-exception/exception-type';
 
 @Injectable()
 export class AppExceptionMapper {

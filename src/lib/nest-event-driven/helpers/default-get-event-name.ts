@@ -1,4 +1,4 @@
-import { IEvent } from '../interfaces';
+import { IEvent } from '~lib/nest-event-driven/interfaces';
 
 export const defaultGetEventName = <EventBase extends IEvent = IEvent>(event: EventBase): string => {
   const { constructor } = Object.getPrototypeOf(event);

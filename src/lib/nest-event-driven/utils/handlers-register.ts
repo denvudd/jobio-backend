@@ -16,7 +16,7 @@ export class HandlerRegister<T, TypeT extends Type<T> = Type<T>> {
     if (!target) {
       return false;
     }
-    
+
     // Всегда добавляем в scoped handlers, чтобы создавать через DI
     try {
       this.moduleRef.introspect(handler);
@@ -49,7 +49,7 @@ export class HandlerRegister<T, TypeT extends Type<T> = Type<T>> {
     if (!handlerTypes) {
       return singletonHandlers;
     }
-    
+
     const scopedHandlers = await Promise.all(
       [...handlerTypes.values()].map((handlerType) =>
         this.moduleRef.resolve(handlerType, contextId, {

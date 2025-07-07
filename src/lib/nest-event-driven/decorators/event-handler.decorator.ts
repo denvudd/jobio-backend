@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 
-import { IEvent, IEventHandlerOptions } from '../interfaces';
-import { EVENTS_HANDLER_METADATA, SCOPE_OPTIONS_METADATA } from './constants';
+import { IEvent, IEventHandlerOptions } from '~lib/nest-event-driven/interfaces';
+import { EVENTS_HANDLER_METADATA, SCOPE_OPTIONS_METADATA } from '~lib/nest-event-driven/decorators/constants';
 
 export function EventsHandler(options: IEventHandlerOptions): ClassDecorator;
 

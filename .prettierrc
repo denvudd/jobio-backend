@@ -4,7 +4,15 @@
   "printWidth": 120,
   "endOfLine": "auto",
   "plugins": ["@trivago/prettier-plugin-sort-imports"],
-  "importOrder": ["<THIRD_PARTY_MODULES>", "~(.*)", "src/(.*)$", "^[./]"],
+  "importOrder": [
+    "<THIRD_PARTY_MODULES>",
+    "~core/(.*)$",
+    "~lib/(.*)$",
+    "~modules/(.*)$",
+    "~shared/(.*)$",
+    "src/(.*)$",
+    "^[./]"
+  ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
   "importOrderParserPlugins": ["classProperties", "typescript", "decorators-legacy"]

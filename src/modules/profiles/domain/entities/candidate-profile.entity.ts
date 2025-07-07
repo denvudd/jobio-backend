@@ -3,18 +3,18 @@ import { Builder } from 'builder-pattern';
 export class CandidateProfile {
   public readonly id: string;
   public readonly userDetailsId: string;
-  public readonly position?: string;
+  public readonly position?: string | null;
   public readonly skills: string[];
-  public readonly experience?: number;
-  public readonly salaryExpectations?: number;
-  public readonly englishLevel?: string;
-  public readonly experienceDescription?: string;
-  public readonly accomplishmentsDescription?: string;
-  public readonly expectationsDescription?: string;
-  public readonly employmentOptions?: string;
-  public readonly hourlyRate?: number;
-  public readonly preferredLanguage?: string;
-  public readonly preferredCommunication?: string;
+  public readonly experience?: number | null;
+  public readonly salaryExpectations?: number | null;
+  public readonly englishLevel?: string | null;
+  public readonly experienceDescription?: string | null;
+  public readonly accomplishmentsDescription?: string | null;
+  public readonly expectationsDescription?: string | null;
+  public readonly employmentOptions?: string | null;
+  public readonly hourlyRate?: number | null;
+  public readonly preferredLanguage?: string | null;
+  public readonly preferredCommunication?: string | null;
   public readonly createdAt: Date;
   public readonly updatedAt: Date;
 
@@ -39,12 +39,12 @@ export class CandidateProfile {
   }
 
   public static builder(id: string, userDetailsId: string) {
-    return Builder(CandidateProfile, { 
-      id, 
-      userDetailsId, 
+    return Builder(CandidateProfile, {
+      id,
+      userDetailsId,
       skills: [],
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
     });
   }
-} 
+}

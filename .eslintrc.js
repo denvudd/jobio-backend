@@ -19,5 +19,20 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-empty-object-type': 'off',
+    'no-restricted-imports': [
+      'warn',
+      {
+        patterns: [
+          {
+            group: ['./'],
+            message: 'Please use aliases (e.g ~modules/*, ~shared/*, ~core/*, ~lib/*) instead of relative imports'
+          },
+          {
+            group: ['../'],
+            message: 'Please use aliases (e.g ~modules/*, ~shared/*, ~core/*, ~lib/*) instead of relative imports'
+          }
+        ]
+      }
+    ],
   },
 };

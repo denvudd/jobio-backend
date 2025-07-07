@@ -1,9 +1,9 @@
 import { SupabaseClient, createClient } from '@supabase/supabase-js';
 import { Strategy } from 'passport-strategy';
 
-import { ISupabaseClientOptions } from '../../core';
+import { ISupabaseClientOptions } from '~lib/passport-supabase/core';
 
-export type ISupabaseBaseAuthStrategyOptions = ISupabaseClientOptions
+export type ISupabaseBaseAuthStrategyOptions = ISupabaseClientOptions;
 
 export abstract class SupabaseBaseAuthStrategy extends Strategy {
   private readonly _supabaseClient: SupabaseClient;

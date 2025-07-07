@@ -48,10 +48,10 @@ export class Application {
           description: 'Enter JWT token',
           in: 'header',
         },
-        'JWT-auth', 
+        'JWT-auth',
       )
       .build();
-      
+
     const document = SwaggerModule.createDocument(this.app, config);
     SwaggerModule.setup('api-docs', this.app, document);
 
