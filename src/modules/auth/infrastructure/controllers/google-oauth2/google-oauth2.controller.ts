@@ -24,7 +24,11 @@ export class GoogleOauth2Controller {
 
   @PublicRoute()
   @UseGuards(GoogleOauth2Guard)
-  @ApiOperation({ operationId: 'withGoogle' })
+  @ApiOperation({ 
+    operationId: 'withGoogle',
+    summary: 'Google OAuth2',
+    description: 'Initiate Google OAuth2 authentication flow'
+  })
   @Get('google')
   public async google() {}
 

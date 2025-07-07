@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Inject, Post, Put, UseGuards } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { UserId } from '~modules/auth/infrastructure/decorators/user-id/user-id.decorator';
 import { JwtAccessAuthGuard } from '~modules/auth/infrastructure/supabase/guards/jwt-access-auth/jwt-access-auth.guard';
@@ -13,6 +13,7 @@ import { IUpdateRecruiterProfileUseCase } from '~modules/profiles/application/us
 import { ProfilesDiToken } from '~modules/profiles/constants';
 
 @ApiTags('profiles')
+@ApiBearerAuth('JWT-auth')
 @Controller('profiles')
 @UseGuards(JwtAccessAuthGuard)
 export class ProfilesController {
@@ -27,6 +28,7 @@ export class ProfilesController {
     private readonly updateRecruiterProfileUseCase: IUpdateRecruiterProfileUseCase,
   ) {}
 
+  @ApiOperation({ summary: 'Create user profile', description: 'Create a new user profile for the authenticated user' })
   @Post()
   async createProfile(@Body() createProfileDto: CreateUserProfileDto, @UserId() userId: string): Promise<void> {
     await this.createUserProfileUseCase.execute({
@@ -35,11 +37,13 @@ export class ProfilesController {
     });
   }
 
+  @ApiOperation({ summary: 'Get my profile', description: 'Get the profile of the authenticated user' })
   @Get('me')
   async getMyProfile(@UserId() userId: string) {
     return this.getUserProfileUseCase.execute({ userId });
   }
 
+  @ApiOperation({ summary: 'Update candidate profile', description: 'Update the candidate profile for the authenticated user' })
   @Put('candidate')
   async updateCandidateProfile(@Body() updateDto: UpdateCandidateProfileDto, @UserId() userId: string) {
     return this.updateCandidateProfileUseCase.execute({
@@ -48,6 +52,7 @@ export class ProfilesController {
     });
   }
 
+  @ApiOperation({ summary: 'Update recruiter profile', description: 'Update the recruiter profile for the authenticated user' })
   @Put('recruiter')
   async updateRecruiterProfile(@Body() updateDto: UpdateRecruiterProfileDto, @UserId() userId: string) {
     return this.updateRecruiterProfileUseCase.execute({

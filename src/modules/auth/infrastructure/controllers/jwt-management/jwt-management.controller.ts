@@ -9,7 +9,11 @@ import { JwtRefreshAuthGuard } from '../../supabase/guards/jwt-refresh-auth/jwt-
 @ApiTags('auth')
 @Controller('auth/tokens')
 export class JwtManagementController {
-  @ApiOperation({ operationId: 'refresh' })
+  @ApiOperation({ 
+    operationId: 'refresh',
+    summary: 'Refresh token',
+    description: 'Refresh the access token using a refresh token'
+  })
   @ApiBody({
     type: ProvideRefreshTokenDto,
   })

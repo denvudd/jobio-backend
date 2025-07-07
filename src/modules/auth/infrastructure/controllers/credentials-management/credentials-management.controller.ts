@@ -1,5 +1,5 @@
 import { Body, Controller, Inject, Post } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { ResetPasswordDto } from '~modules/auth/application/dto/reset-password.dto';
 import { SendResetPasswordConfirmationDto } from '~modules/auth/application/dto/send-reset-password-confirmation.dto';
@@ -18,6 +18,7 @@ import { UserId } from '../../decorators/user-id/user-id.decorator';
 import { ReqUser } from '../../decorators/user/user.decorator';
 
 @ApiTags('auth')
+@ApiBearerAuth('JWT-auth')
 @Controller('auth/credentials')
 export class CredentialsManagementController {
   constructor(
@@ -29,28 +30,44 @@ export class CredentialsManagementController {
   ) {}
 
   @AuthenticateSupabaseClient()
-  @ApiOperation({ operationId: 'changePassword' })
+  @ApiOperation({ 
+    operationId: 'changePassword',
+    summary: 'Change password',
+    description: 'Change the password for the authenticated user'
+  })
   @Post('/password')
   public async changePassword(@Body() dto: UpdateUserPasswordDto, @UserId() userId: string) {
     return this.changePasswordUseCase.execute({ updateDto: dto, userId });
   }
 
   @AuthenticateSupabaseClient()
-  @ApiOperation({ operationId: 'changeEmail' })
+  @ApiOperation({ 
+    operationId: 'changeEmail',
+    summary: 'Change email',
+    description: 'Change the email for the authenticated user'
+  })
   @Post('/email')
   public async changeEmail(@Body() dto: UpdateUserEmailDto) {
     return this.changeEmailUseCase.execute(dto);
   }
 
   @PublicRoute()
-  @ApiOperation({ operationId: 'sendPasswordResetConfirmation' })
+  @ApiOperation({ 
+    operationId: 'sendPasswordResetConfirmation',
+    summary: 'Send password reset confirmation',
+    description: 'Send a password reset confirmation email to the user'
+  })
   @Post('/password/send-reset-confirmation')
   public async sendPasswordResetConfirmation(@Body() dto: SendResetPasswordConfirmationDto) {
     return this.sendResetPasswordConfirmationUseCase.execute(dto);
   }
 
   @AuthenticateSupabaseClient()
-  @ApiOperation({ operationId: 'resetPassword' })
+  @ApiOperation({ 
+    operationId: 'resetPassword',
+    summary: 'Reset password',
+    description: 'Reset the password for the authenticated user'
+  })
   @Post('/password/reset')
   public async resetPassword(@Body() dto: ResetPasswordDto, @ReqUser() user: User) {
     return this.resetPasswordUseCase.execute({

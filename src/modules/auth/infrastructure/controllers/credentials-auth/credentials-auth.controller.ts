@@ -25,7 +25,11 @@ export class CredentialsAuthController {
     @Inject(AuthDiToken.PERFORM_POST_AUTH_USE_CASE) private readonly performPostAuthUseCase: IPerformPostAuthUseCase,
   ) {}
 
-  @ApiOperation({ operationId: 'signIn' })
+  @ApiOperation({ 
+    operationId: 'signIn',
+    summary: 'Sign in',
+    description: 'Sign in with email and password credentials'
+  })
   @ApiBody({
     type: EmailPasswordCredentialsDto,
   })
@@ -36,7 +40,11 @@ export class CredentialsAuthController {
     return this.authCredentialsMapper.sessionToTokenResult(session);
   }
 
-  @ApiOperation({ operationId: 'signUp' })
+  @ApiOperation({ 
+    operationId: 'signUp',
+    summary: 'Sign up',
+    description: 'Create a new user account with email and password'
+  })
   @Post('/sign-up')
   public async signUp(@Body() credentials: EmailPasswordCredentialsDto) {
     await this.signUpByEmailPasswordUseCase.execute(credentials);

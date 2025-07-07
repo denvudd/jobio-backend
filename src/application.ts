@@ -36,7 +36,22 @@ export class Application {
   }
 
   private async initSwaggerDoc() {
-    const config = new DocumentBuilder().setTitle('Jobio API').setVersion('1.0').build();
+    const config = new DocumentBuilder()
+      .setTitle('Jobio API')
+      .setVersion('1.0')
+      .addBearerAuth(
+        {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+          name: 'JWT',
+          description: 'Enter JWT token',
+          in: 'header',
+        },
+        'JWT-auth', 
+      )
+      .build();
+      
     const document = SwaggerModule.createDocument(this.app, config);
     SwaggerModule.setup('api-docs', this.app, document);
 
