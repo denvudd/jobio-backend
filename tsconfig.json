@@ -13,7 +13,8 @@
     "paths": {
       "~modules/*": ["src/modules/*"],
       "~shared/*": ["src/shared/*"],
-      "~core/*": ["src/core/*"]
+      "~core/*": ["src/core/*"],
+      "~lib/*": ["src/lib/*"]
     },
     "incremental": true,
     "skipLibCheck": true,

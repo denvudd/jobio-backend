@@ -11,15 +11,11 @@ import {
   varchar,
 } from 'drizzle-orm/pg-core';
 
-import { authUsers } from './auth-database-schema';
-
 export const userDetails = pgTable(
   'user_details',
   {
     id: uuid('id').primaryKey().notNull(),
-    userId: uuid('user_id')
-      .references(() => authUsers.id, { onDelete: 'cascade' })
-      .notNull(),
+    userId: uuid('user_id').notNull(),
     fullName: varchar('full_name', { length: 255 }),
     role: varchar('role', { length: 50 }).notNull().default('candidate'),
     createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).defaultNow(),

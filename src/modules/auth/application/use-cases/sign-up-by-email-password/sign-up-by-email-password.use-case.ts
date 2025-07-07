@@ -23,7 +23,7 @@ export class SignUpByEmailPasswordUseCase
   }
 
   protected async implementation(): Promise<void> {
-    const { email, password } = this._input;
+    const { email, password, role } = this._input;
 
     const user = await this.authService.signUpByEmailPassword(
       email,
@@ -31,6 +31,6 @@ export class SignUpByEmailPasswordUseCase
       this.appConfig.get('CLIENT_AUTH_REDIRECT_URL'),
     );
 
-    this._eventDispatcher.registerEvent(new UserCreatedEvent({ user }));
+    this._eventDispatcher.registerEvent(new UserCreatedEvent({ user, role }));
   }
 }

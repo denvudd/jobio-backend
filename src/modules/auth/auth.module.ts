@@ -54,5 +54,12 @@ import { SupabaseJwtRefreshAuthStrategy } from './infrastructure/supabase/strate
     JwtManagementController,
     CredentialsManagementController,
   ],
+  exports: [
+    SupabaseUserMapper,
+    SupabaseSessionMapper,
+    SupabaseAccessTokenJwtPayloadMapper,
+    SupabaseAuthenticatedClientService,
+    SupabaseClientService,
+  ],
 })
 export class AuthModule {}

@@ -44,7 +44,7 @@ export abstract class DrizzleRepository<
       .where(eq(this.tableDefinition.table[this.tableDefinition.idKey], id))
       .limit(1);
     if (!result) return null;
-    this.mapper.toDomain(result as any);
+    return this.mapper.toDomain(result as any);
   }
   public async create(entity: TEntity): Promise<TEntity> {
     const [result] = (await this.db

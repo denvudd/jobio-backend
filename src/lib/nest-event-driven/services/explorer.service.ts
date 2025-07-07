@@ -22,7 +22,10 @@ export class ExplorerService<TEvent extends IEvent = IEvent> {
 
   flatMap<T>(modules: Module[], callback: (instance: InstanceWrapper) => Type<any> | undefined): Type<T>[] {
     const items = modules
-      .map((module) => [...module.providers.values()].map(callback))
+      .map((module) => {
+        const providers = [...module.providers.values()];
+        return providers.map(callback);
+      })
       .reduce((a, b) => a.concat(b), []);
 
     return items.filter((element) => !!element) as Type<T>[];

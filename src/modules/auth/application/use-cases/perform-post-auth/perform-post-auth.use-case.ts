@@ -1,7 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 
 import { AuthDiToken } from '~modules/auth/constants';
-import { UserCreatedEvent } from '~modules/auth/domain/events/user-created.event';
 import { Command } from '~shared/application/CQS/command.abstract';
 
 import { IAuthService } from '../../services/auth-service.interface';
@@ -17,7 +16,6 @@ export class PerformPostAuthUseCase extends Command<IPerformPostAuthPayload, voi
     const { user } = this._input;
     if (user.signUpCompleted) return;
 
-    this._eventDispatcher.registerEvent(new UserCreatedEvent({ user }));
     await this.authService.markSignUpFinished();
   }
 }
