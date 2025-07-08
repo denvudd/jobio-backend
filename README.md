@@ -23,15 +23,77 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Jobio Backend - NestJS API for a job search platform with Supabase authentication integration and PostgreSQL database.
 
-## Project setup
+## Quick Start with Docker (Recommended)
+
+### Prerequisites
+- Docker Desktop installed
+- Access to a Supabase project
+
+### Manual Setup
+
+1. **Copy the configuration:**
+```bash
+cp config/env.example config/.env
+```
+
+2. **Edit `config/.env` with your actual values**
+
+3. **Start the services:**
+```bash
+docker-compose up -d
+```
+**or, if you installed packages before**
+```
+npm run docker:up
+```
+
+4. **Apply migrations:**
+```bash
+docker-compose exec backend npm run db:push
+```
+
+### Available Services
+- **API**: http://localhost:8080
+- **Documentation**: http://localhost:8080/api-docs
+- **Health Check**: http://localhost:8080/health
+
+## Local Development
+
+### Prerequisites
+- Node.js 18+ installed
+- Access to a Supabase project
+- PostgreSQL database (local or Supabase)
+
+### Environment Setup
+
+1. **Copy the configuration:**
+```bash
+cp config/env.example config/.env
+```
+
+2. **Edit `config/.env` with your actual values:**
+
+### Project setup
 
 ```bash
 $ npm install
 ```
 
-## Compile and run the project
+### Database Migrations
+
+1. **Generate migrations (if needed):**
+```bash
+$ npm run db:generate
+```
+
+2. **Apply migrations to database:**
+```bash
+$ npm run db:push
+```
+
+### Compile and run the project
 
 ```bash
 # development

@@ -1,1 +1,1 @@
-export * from './oauth2';
+export * from '~lib/passport-oauth/strategies/oauth2';

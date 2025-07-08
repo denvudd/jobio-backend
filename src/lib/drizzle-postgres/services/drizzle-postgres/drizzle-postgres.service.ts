@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { Client, Pool } from 'pg';
 
-import { DrizzleDbOptions } from './drizzle-db-options';
+import { DrizzleDbOptions } from '~lib/drizzle-postgres/services/drizzle-postgres/drizzle-db-options';
 
 @Injectable()
 export class DrizzlePostgresService {

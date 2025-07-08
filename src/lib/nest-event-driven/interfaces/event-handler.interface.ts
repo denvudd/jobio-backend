@@ -1,6 +1,6 @@
 import { Scope } from '@nestjs/common';
 
-import { IEvent } from './event.interface';
+import { type IEvent } from '~lib/nest-event-driven/interfaces/event.interface';
 
 export interface IEventHandlerOptions {
   events: (IEvent | (new (...args: any[]) => IEvent))[];

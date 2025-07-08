@@ -1,30 +1,30 @@
 import { Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 
-import { ChangeEmailUseCase } from './application/use-cases/change-email/change-email.use-case';
-import { ChangePasswordUseCase } from './application/use-cases/change-password/change-password.use-case';
-import { PerformPostAuthUseCase } from './application/use-cases/perform-post-auth/perform-post-auth.use-case';
-import { ResetPasswordUseCase } from './application/use-cases/reset-password/reset-password.use-case';
-import { SendResetPasswordConfirmationUseCase } from './application/use-cases/send-reset-password-confirmation/send-reset-password-confirmation.use-case';
-import { SignUpByEmailPasswordUseCase } from './application/use-cases/sign-up-by-email-password/sign-up-by-email-password.use-case';
-import { AuthDiToken } from './constants';
-import { AuthCredentialsMapper } from './domain/mappers/auth-credentials/auth-credentials.mapper';
-import { CredentialsAuthController } from './infrastructure/controllers/credentials-auth/credentials-auth.controller';
-import { CredentialsManagementController } from './infrastructure/controllers/credentials-management/credentials-management.controller';
-import { GoogleOauth2Controller } from './infrastructure/controllers/google-oauth2/google-oauth2.controller';
-import { JwtManagementController } from './infrastructure/controllers/jwt-management/jwt-management.controller';
-import { BcryptPasswordService } from './infrastructure/services/password/bcrypt-password.service';
-import { JwtAccessAuthGuard } from './infrastructure/supabase/guards/jwt-access-auth/jwt-access-auth.guard';
-import { SupabaseAccessTokenJwtPayloadMapper } from './infrastructure/supabase/mappers/access-token-jwt-payload/supabase-access-token-jwt-payload.mapper';
-import { SupabaseSessionMapper } from './infrastructure/supabase/mappers/session/supabase-session.mapper';
-import { SupabaseUserMapper } from './infrastructure/supabase/mappers/user/supabase-user.mapper';
-import { SupabaseAuthService } from './infrastructure/supabase/services/auth/supabase-auth.service';
-import { SupabaseAuthenticatedClientService } from './infrastructure/supabase/services/supabase-authenticated-client/supabase-authenticated-client.service';
-import { SupabaseClientService } from './infrastructure/supabase/services/supabase-client/supabase-client.service';
-import { SupabaseEmailPasswordLoginAuthStrategy } from './infrastructure/supabase/strategies/credentials-login/supabase-email-password-login-auth.strategy';
-import { SupabaseGoogleOAuth2Strategy } from './infrastructure/supabase/strategies/google-oauth2/supabase-google-oauth2.strategy';
-import { SupabaseJwtAccessAuthStrategy } from './infrastructure/supabase/strategies/jwt-access/supabase-jwt-access-auth.strategy';
-import { SupabaseJwtRefreshAuthStrategy } from './infrastructure/supabase/strategies/jwt-refresh/supabase-jwt-refresh-auth.strategy';
+import { ChangeEmailUseCase } from '~modules/auth/application/use-cases/change-email/change-email.use-case';
+import { ChangePasswordUseCase } from '~modules/auth/application/use-cases/change-password/change-password.use-case';
+import { PerformPostAuthUseCase } from '~modules/auth/application/use-cases/perform-post-auth/perform-post-auth.use-case';
+import { ResetPasswordUseCase } from '~modules/auth/application/use-cases/reset-password/reset-password.use-case';
+import { SendResetPasswordConfirmationUseCase } from '~modules/auth/application/use-cases/send-reset-password-confirmation/send-reset-password-confirmation.use-case';
+import { SignUpByEmailPasswordUseCase } from '~modules/auth/application/use-cases/sign-up-by-email-password/sign-up-by-email-password.use-case';
+import { AuthDiToken } from '~modules/auth/constants';
+import { AuthCredentialsMapper } from '~modules/auth/domain/mappers/auth-credentials/auth-credentials.mapper';
+import { CredentialsAuthController } from '~modules/auth/infrastructure/controllers/credentials-auth/credentials-auth.controller';
+import { CredentialsManagementController } from '~modules/auth/infrastructure/controllers/credentials-management/credentials-management.controller';
+import { GoogleOauth2Controller } from '~modules/auth/infrastructure/controllers/google-oauth2/google-oauth2.controller';
+import { JwtManagementController } from '~modules/auth/infrastructure/controllers/jwt-management/jwt-management.controller';
+import { BcryptPasswordService } from '~modules/auth/infrastructure/services/password/bcrypt-password.service';
+import { JwtAccessAuthGuard } from '~modules/auth/infrastructure/supabase/guards/jwt-access-auth/jwt-access-auth.guard';
+import { SupabaseAccessTokenJwtPayloadMapper } from '~modules/auth/infrastructure/supabase/mappers/access-token-jwt-payload/supabase-access-token-jwt-payload.mapper';
+import { SupabaseSessionMapper } from '~modules/auth/infrastructure/supabase/mappers/session/supabase-session.mapper';
+import { SupabaseUserMapper } from '~modules/auth/infrastructure/supabase/mappers/user/supabase-user.mapper';
+import { SupabaseAuthService } from '~modules/auth/infrastructure/supabase/services/auth/supabase-auth.service';
+import { SupabaseAuthenticatedClientService } from '~modules/auth/infrastructure/supabase/services/supabase-authenticated-client/supabase-authenticated-client.service';
+import { SupabaseClientService } from '~modules/auth/infrastructure/supabase/services/supabase-client/supabase-client.service';
+import { SupabaseEmailPasswordLoginAuthStrategy } from '~modules/auth/infrastructure/supabase/strategies/credentials-login/supabase-email-password-login-auth.strategy';
+import { SupabaseGoogleOAuth2Strategy } from '~modules/auth/infrastructure/supabase/strategies/google-oauth2/supabase-google-oauth2.strategy';
+import { SupabaseJwtAccessAuthStrategy } from '~modules/auth/infrastructure/supabase/strategies/jwt-access/supabase-jwt-access-auth.strategy';
+import { SupabaseJwtRefreshAuthStrategy } from '~modules/auth/infrastructure/supabase/strategies/jwt-refresh/supabase-jwt-refresh-auth.strategy';
 
 @Module({
   providers: [

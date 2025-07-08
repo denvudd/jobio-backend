@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 
-import { AppExceptionMapper } from './domain/mappers/app-exception/app-exception.mapper';
-import { GlobalExceptionsFilter } from './infrastructure/filters/global-exceptions/global-exceptions.filter';
-import { ErrorInterceptor } from './infrastructure/interceptors/error/error.interceptor';
+import { AppExceptionMapper } from '~core/exceptions/domain/mappers/app-exception/app-exception.mapper';
+import { GlobalExceptionsFilter } from '~core/exceptions/infrastructure/filters/global-exceptions/global-exceptions.filter';
+import { ErrorInterceptor } from '~core/exceptions/infrastructure/interceptors/error/error.interceptor';
 
 @Module({
   providers: [

@@ -1,1 +1,5 @@
-export { IAuthResult, ISupabaseClientOptions, JwtFromRequestFunction } from './types';
+export {
+  type IAuthResult,
+  type ISupabaseClientOptions,
+  type JwtFromRequestFunction,
+} from '~lib/passport-supabase/core/types';

@@ -2,17 +2,19 @@ import { Inject, Injectable } from '@nestjs/common';
 
 import { SupabaseUserMapper } from '~modules/auth/infrastructure/supabase/mappers/user/supabase-user.mapper';
 import { SupabaseClientService } from '~modules/auth/infrastructure/supabase/services/supabase-client/supabase-client.service';
+import {
+  type IGetUserProfileWithAuthUseCase,
+  type IUserWithDetails,
+} from '~modules/profiles/application/use-cases/get-user-profile-with-auth/get-user-profile-with-auth-use-case.interface';
 import { ProfilesDiToken } from '~modules/profiles/constants';
 import { CandidateProfile } from '~modules/profiles/domain/entities/candidate-profile.entity';
 import { RecruiterProfile } from '~modules/profiles/domain/entities/recruiter-profile.entity';
 import { ICandidateProfileRepository } from '~modules/profiles/domain/repositories/candidate-profile-repository.interface';
 import { IRecruiterProfileRepository } from '~modules/profiles/domain/repositories/recruiter-profile-repository.interface';
-import { IUserDetailsRepository } from '~modules/profiles/domain/repositories/user-details-repository.interface';
+import { type IUserDetailsRepository } from '~modules/profiles/domain/repositories/user-details-repository.interface';
 
 import { Query } from '~shared/application/CQS/query.abstract';
 import { UserRole } from '~shared/domain/enums/user-role.enum';
-
-import { IGetUserProfileWithAuthUseCase, IUserWithDetails } from './get-user-profile-with-auth-use-case.interface';
 
 @Injectable()
 export class GetUserProfileWithAuthUseCase

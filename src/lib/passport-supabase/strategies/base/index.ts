@@ -1,1 +1,4 @@
-export { ISupabaseBaseAuthStrategyOptions, SupabaseBaseAuthStrategy } from './supabase-base-auth.strategy';
+export {
+  type ISupabaseBaseAuthStrategyOptions,
+  SupabaseBaseAuthStrategy,
+} from '~lib/passport-supabase/strategies/base/supabase-base-auth.strategy';

@@ -1,5 +1,8 @@
-export { IEventBus } from './event-bus.interface';
-export { IEventHandlerOptions, IEventHandler } from './event-handler.interface';
-export { IEventPublisher } from './event-publisher.interface';
-export { IEvent } from './event.interface';
-export { IMessageSource } from './event-subscriber.interface';
+export { type IEventBus } from '~lib/nest-event-driven/interfaces/event-bus.interface';
+export {
+  type IEventHandlerOptions,
+  type IEventHandler,
+} from '~lib/nest-event-driven/interfaces/event-handler.interface';
+export { type IEventPublisher } from '~lib/nest-event-driven/interfaces/event-publisher.interface';
+export { type IEvent } from '~lib/nest-event-driven/interfaces/event.interface';
+export { type IMessageSource } from '~lib/nest-event-driven/interfaces/event-subscriber.interface';

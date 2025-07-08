@@ -1,6 +1,6 @@
 export {
-  IGoogleParams,
-  IGoogleUserProfile,
-  ISupabaseGoogleOAuthStrategyOptions,
+  type IGoogleParams,
+  type IGoogleUserProfile,
+  type ISupabaseGoogleOAuthStrategyOptions,
   SupabaseGoogleOAuth2Strategy,
-} from './supabase-google-oauth2.strategy';
+} from '~lib/passport-supabase/strategies/google-oauth/supabase-google-oauth2.strategy';

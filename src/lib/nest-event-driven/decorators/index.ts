@@ -1,1 +1,1 @@
-export { EventsHandler } from './event-handler.decorator';
+export { EventsHandler } from '~lib/nest-event-driven/decorators/event-handler.decorator';

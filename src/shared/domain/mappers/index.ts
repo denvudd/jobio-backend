@@ -1,1 +1,1 @@
-export * from './data-access-mapper.interface';
+export * from '~shared/domain/mappers/data-access-mapper.interface';

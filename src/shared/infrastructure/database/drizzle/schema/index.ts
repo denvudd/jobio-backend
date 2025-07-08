@@ -1,3 +1,3 @@
-export * as authSchema from './auth-database-schema';
-export * as publicSchema from './public-database-schema';
-export * from './types';
+export * as authSchema from '~shared/infrastructure/database/drizzle/schema/auth-database-schema';
+export * as publicSchema from '~shared/infrastructure/database/drizzle/schema/public-database-schema';
+export * from '~shared/infrastructure/database/drizzle/schema/types';

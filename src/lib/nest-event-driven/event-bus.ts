@@ -3,15 +3,15 @@ import { ModuleRef } from '@nestjs/core';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
-import { EVENTS_HANDLER_METADATA } from './decorators/constants';
-import { DefaultPubSub } from './default-pub-sub';
-import { defaultGetEventName } from './helpers/default-get-event-name';
-import { IEventBus } from './interfaces/event-bus.interface';
-import { IEventHandler } from './interfaces/event-handler.interface';
-import { IEventPublisher } from './interfaces/event-publisher.interface';
-import { IEvent } from './interfaces/event.interface';
-import { HandlerRegister } from './utils/handlers-register';
-import { ObservableBus } from './utils/observable-bus';
+import { EVENTS_HANDLER_METADATA } from '~lib/nest-event-driven/decorators/constants';
+import { DefaultPubSub } from '~lib/nest-event-driven/default-pub-sub';
+import { defaultGetEventName } from '~lib/nest-event-driven/helpers/default-get-event-name';
+import { IEventBus } from '~lib/nest-event-driven/interfaces/event-bus.interface';
+import { IEventHandler } from '~lib/nest-event-driven/interfaces/event-handler.interface';
+import { IEventPublisher } from '~lib/nest-event-driven/interfaces/event-publisher.interface';
+import { IEvent } from '~lib/nest-event-driven/interfaces/event.interface';
+import { HandlerRegister } from '~lib/nest-event-driven/utils/handlers-register';
+import { ObservableBus } from '~lib/nest-event-driven/utils/observable-bus';
 
 export type EventHandlerType<TEvent extends IEvent = IEvent> = Type<IEventHandler<TEvent>>;
 

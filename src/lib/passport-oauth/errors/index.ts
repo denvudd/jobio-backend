@@ -1,1 +1,1 @@
-export { PassportOauth2Error } from './passport-oauth2.error';
+export { PassportOauth2Error } from '~lib/passport-oauth/errors/passport-oauth2.error';

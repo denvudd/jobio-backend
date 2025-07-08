@@ -1,6 +1,6 @@
 import { Subject } from 'rxjs';
 
-import { IEvent } from './event.interface';
+import { type IEvent } from '~lib/nest-event-driven/interfaces/event.interface';
 
 export interface IEventBus<TEvent extends IEvent = IEvent> {
   subject$: Subject<TEvent>;

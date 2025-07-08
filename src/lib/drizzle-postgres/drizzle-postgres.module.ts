@@ -1,9 +1,9 @@
 import { ConfigurableModuleBuilder, DynamicModule, Module } from '@nestjs/common';
 
-import { POSTGRES_DB } from './constants';
-import { DrizzlePostgresService } from './services/drizzle-postgres/drizzle-postgres.service';
-import { IDrizzlePostgresModuleOptions } from './types/drizzle-postgres-module-options.interface';
-import { IWithProviderToken } from './with-provider-token.interface';
+import { POSTGRES_DB } from '~lib/drizzle-postgres/constants';
+import { DrizzlePostgresService } from '~lib/drizzle-postgres/services/drizzle-postgres/drizzle-postgres.service';
+import { IDrizzlePostgresModuleOptions } from '~lib/drizzle-postgres/types/drizzle-postgres-module-options.interface';
+import { IWithProviderToken } from '~lib/drizzle-postgres/with-provider-token.interface';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { ConfigurableModuleClass, ASYNC_OPTIONS_TYPE, MODULE_OPTIONS_TOKEN, OPTIONS_TYPE } =

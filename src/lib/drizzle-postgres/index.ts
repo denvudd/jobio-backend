@@ -1,3 +1,3 @@
-export * from './constants';
-export * from './drizzle-postgres.module';
-export * from './types';
+export * from '~lib/drizzle-postgres/constants';
+export * from '~lib/drizzle-postgres/drizzle-postgres.module';
+export * from '~lib/drizzle-postgres/types';

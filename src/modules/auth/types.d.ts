@@ -1,5 +1,5 @@
-import { User as DomainUser } from './domain/entities/user.entity';
-import { Session } from './domain/value-objects/session.value';
+import { User as DomainUser } from '~modules/auth/domain/entities/user.entity';
+import { Session } from '~modules/auth/domain/value-objects/session.value';
 
 declare global {
   declare namespace Express {

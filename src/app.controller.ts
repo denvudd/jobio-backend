@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
-import { AppService } from './app.service';
+import { AppService } from 'src/app.service';
 
 @ApiTags('Ping')
 @Controller()
@@ -11,5 +11,13 @@ export class AppController {
   @Get()
   ping(): string {
     return this.appService.ping();
+  }
+
+  @Get('health')
+  health(): { status: string; timestamp: string } {
+    return {
+      status: 'ok',
+      timestamp: new Date().toISOString(),
+    };
   }
 }

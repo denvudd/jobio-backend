@@ -1,6 +1,6 @@
 import { Subject } from 'rxjs';
 
-import { IEvent, IEventPublisher, IMessageSource } from './interfaces';
+import { IEvent, IEventPublisher, IMessageSource } from '~lib/nest-event-driven/interfaces';
 
 export class DefaultPubSub<TEvent extends IEvent> implements IEventPublisher<TEvent>, IMessageSource<TEvent> {
   private subject$: Subject<TEvent>;

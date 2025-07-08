@@ -1,1 +1,1 @@
-export { IDrizzlePostgresModuleOptions } from './drizzle-postgres-module-options.interface';
+export { IDrizzlePostgresModuleOptions } from '~lib/drizzle-postgres/types/drizzle-postgres-module-options.interface';

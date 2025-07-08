@@ -1,6 +1,6 @@
-import { IEvent } from 'src/lib/nest-event-driven';
+import { type IEvent } from '~lib/nest-event-driven/interfaces/event.interface';
 
-import { IntegrationEventType } from './enums/event-type.enum';
+import { IntegrationEventType } from '~shared/infrastructure/events/enums/event-type.enum';
 
 export abstract class InfrastructureEvent<TPayload extends object> implements IEvent<TPayload, IntegrationEventType> {
   public abstract readonly eventType: IntegrationEventType;

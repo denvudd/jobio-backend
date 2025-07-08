@@ -1,8 +1,8 @@
 export {
-  CredentialsExtractor,
-  ICredentials,
-  ISupabaseCredentialsAuthStrategyOptions,
+  type CredentialsExtractor,
+  type ICredentials,
+  type ISupabaseCredentialsAuthStrategyOptions,
   SupabaseCredentialsLoginAuthStrategy,
-  IEmailPasswordCredentials,
-  IPhonePasswordCredentials,
-} from './supabase-credentials-login-auth.strategy';
+  type IEmailPasswordCredentials,
+  type IPhonePasswordCredentials,
+} from '~lib/passport-supabase/strategies/credentials-login/supabase-credentials-login-auth.strategy';

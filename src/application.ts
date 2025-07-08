@@ -3,8 +3,9 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { useContainer } from 'class-validator';
 import { writeFileSync } from 'fs';
 
-import { AppModule } from './app.module';
-import { FlagParser } from './lib/flag-parser';
+import { FlagParser } from '~lib/flag-parser';
+
+import { AppModule } from 'src/app.module';
 
 export class Application {
   private readonly port: string | number;

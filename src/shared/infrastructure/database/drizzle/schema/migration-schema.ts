@@ -1,1 +1,1 @@
-export * from './public-database-schema';
+export * from '~shared/infrastructure/database/drizzle/schema/public-database-schema';

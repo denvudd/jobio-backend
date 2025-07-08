@@ -1,4 +1,4 @@
 export {
-  ISupabaseBaseJwtRefreshAuthStrategyOptions,
+  type ISupabaseBaseJwtRefreshAuthStrategyOptions,
   SupabaseJwtRefreshAuthStrategy,
-} from './supabase-jwt-refresh-auth.strategy';
+} from '~lib/passport-supabase/strategies/jwt-refresh/supabase-jwt-refresh-auth.strategy';

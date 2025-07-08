@@ -1,1 +1,1 @@
-export * from './extract-auth-token.util';
+export * from '~shared/infrastructure/util/extract-auth-token.util';

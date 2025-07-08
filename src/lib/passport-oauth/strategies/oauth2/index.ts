@@ -1,1 +1,1 @@
-export { OAuth2Strategy, IOAuth2StrategyOptions } from './oauth2.strategy';
+export { OAuth2Strategy, type IOAuth2StrategyOptions } from '~lib/passport-oauth/strategies/oauth2/oauth2.strategy';
