@@ -1,11 +1,13 @@
 import { Inject, Injectable } from '@nestjs/common';
 
+import { IAuthService } from '~modules/auth/application/services/auth-service.interface';
+import {
+  IPerformPostAuthPayload,
+  IPerformPostAuthUseCase,
+} from '~modules/auth/application/use-cases/perform-post-auth/perform-post-auth.interface';
 import { AuthDiToken } from '~modules/auth/constants';
 
 import { Command } from '~shared/application/CQS/command.abstract';
-
-import { IAuthService } from '../../services/auth-service.interface';
-import { IPerformPostAuthPayload, IPerformPostAuthUseCase } from './perform-post-auth.interface';
 
 @Injectable()
 export class PerformPostAuthUseCase extends Command<IPerformPostAuthPayload, void> implements IPerformPostAuthUseCase {

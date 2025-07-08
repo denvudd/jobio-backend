@@ -3,14 +3,13 @@ import { AuthError } from '@supabase/supabase-js';
 
 import { IAuthService } from '~modules/auth/application/services/auth-service.interface';
 import { User } from '~modules/auth/domain/entities/user.entity';
+import { SupabaseSessionMapper } from '~modules/auth/infrastructure/supabase/mappers/session/supabase-session.mapper';
+import { SupabaseUserMapper } from '~modules/auth/infrastructure/supabase/mappers/user/supabase-user.mapper';
+import { SupabaseAuthenticatedClientService } from '~modules/auth/infrastructure/supabase/services/supabase-authenticated-client/supabase-authenticated-client.service';
+import { SupabaseClientService } from '~modules/auth/infrastructure/supabase/services/supabase-client/supabase-client.service';
 
 import { AppException } from 'src/core/exceptions/domain/exceptions/base/app.exception';
 import { CustomException } from 'src/core/exceptions/domain/exceptions/custom-exception/dynamic.exception';
-
-import { SupabaseSessionMapper } from '../../mappers/session/supabase-session.mapper';
-import { SupabaseUserMapper } from '../../mappers/user/supabase-user.mapper';
-import { SupabaseAuthenticatedClientService } from '../supabase-authenticated-client/supabase-authenticated-client.service';
-import { SupabaseClientService } from '../supabase-client/supabase-client.service';
 
 @Injectable({ scope: Scope.REQUEST })
 export class SupabaseAuthService implements IAuthService {

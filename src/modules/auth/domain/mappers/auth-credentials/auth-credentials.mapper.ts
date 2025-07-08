@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 import { TokensResultDto } from '~modules/auth/application/dto/tokens-result.dto';
-
-import { Session } from '../../value-objects/session.value';
+import { Session } from '~modules/auth/domain/value-objects/session.value';
 
 @Injectable()
 export class AuthCredentialsMapper {

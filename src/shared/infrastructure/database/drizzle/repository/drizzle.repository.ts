@@ -3,8 +3,7 @@ import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 
 import { IDataAccessMapper } from '~shared/domain/mappers';
 import { IBaseRepository } from '~shared/domain/repositories';
-
-import { MergedDbSchema } from '../schema';
+import { MergedDbSchema } from '~shared/infrastructure/database/drizzle/schema';
 
 export class TableDefinition<
   T extends Table<any> = Table<any>,

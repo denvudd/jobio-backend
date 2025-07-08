@@ -1,5 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 
+import { CreateUserProfileDto } from '~modules/profiles/application/dto/create-user-profile.dto';
+import { ICreateUserProfileUseCase } from '~modules/profiles/application/use-cases/create-user-profile/create-user-profile-use-case.interface';
 import { ProfilesDiToken } from '~modules/profiles/constants';
 import { CandidateProfile } from '~modules/profiles/domain/entities/candidate-profile.entity';
 import { RecruiterProfile } from '~modules/profiles/domain/entities/recruiter-profile.entity';
@@ -10,9 +12,6 @@ import { IUserDetailsRepository } from '~modules/profiles/domain/repositories/us
 
 import { Command } from '~shared/application/CQS/command.abstract';
 import { UserRole } from '~shared/domain/enums/user-role.enum';
-
-import { CreateUserProfileDto } from '../../dto/create-user-profile.dto';
-import { ICreateUserProfileUseCase } from './create-user-profile-use-case.interface';
 
 @Injectable()
 export class CreateUserProfileUseCase

@@ -3,13 +3,12 @@ import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy, StrategyOptions, VerifiedCallback } from 'passport-jwt';
 
 import { AuthGuardToken } from '~modules/auth/constants';
+import { SupabaseAccessTokenJwtPayload } from '~modules/auth/infrastructure/supabase/mappers/access-token-jwt-payload/supabase-access-token-jwt-payload.mapper';
 
 import { IAppConfigService } from '~shared/application/services/app-config-service.interface';
 import { BaseToken } from '~shared/constants';
 
 import { IAuthResult } from 'src/lib/passport-supabase';
-
-import { SupabaseAccessTokenJwtPayload } from '../../mappers/access-token-jwt-payload/supabase-access-token-jwt-payload.mapper';
 
 @Injectable()
 export class SupabaseJwtAccessAuthStrategy extends PassportStrategy(Strategy, AuthGuardToken.JWT_ACCESS) {

@@ -11,13 +11,12 @@ import { InvalidAccessTokenException } from '~modules/auth/application/exception
 import { InvalidAuthResultException } from '~modules/auth/application/exceptions/invalid-auth-result.exception';
 import { NoTokenProvidedException } from '~modules/auth/application/exceptions/no-token-provided.exception';
 import { AuthMetadataKey } from '~modules/auth/constants';
+import { SupabaseAccessTokenJwtPayloadMapper } from '~modules/auth/infrastructure/supabase/mappers/access-token-jwt-payload/supabase-access-token-jwt-payload.mapper';
+import { SupabaseSessionMapper } from '~modules/auth/infrastructure/supabase/mappers/session/supabase-session.mapper';
+import { SupabaseUserMapper } from '~modules/auth/infrastructure/supabase/mappers/user/supabase-user.mapper';
+import { SupabaseAuthenticatedClientService } from '~modules/auth/infrastructure/supabase/services/supabase-authenticated-client/supabase-authenticated-client.service';
 
 import { IAuthResult } from 'src/lib/passport-supabase';
-
-import { SupabaseAccessTokenJwtPayloadMapper } from '../../mappers/access-token-jwt-payload/supabase-access-token-jwt-payload.mapper';
-import { SupabaseSessionMapper } from '../../mappers/session/supabase-session.mapper';
-import { SupabaseUserMapper } from '../../mappers/user/supabase-user.mapper';
-import { SupabaseAuthenticatedClientService } from '../../services/supabase-authenticated-client/supabase-authenticated-client.service';
 
 export const SupabaseBaseAuthGuard = (type?: string | string[]): Type<IAuthGuard> => {
   class MixinAuthGuard extends AuthGuard(type) {

@@ -11,11 +11,10 @@ import { IResetPasswordUseCase } from '~modules/auth/application/use-cases/reset
 import { ISendResetPasswordConfirmationUseCase } from '~modules/auth/application/use-cases/send-reset-password-confirmation/send-reset-password-confirmation-use-case.interface';
 import { AuthDiToken } from '~modules/auth/constants';
 import { User } from '~modules/auth/domain/entities/user.entity';
-
-import { AuthenticateSupabaseClient } from '../../decorators/authenticate-supabase-client/authenticate-supabase-client.decorator';
-import { PublicRoute } from '../../decorators/public-route/public-route.decorator';
-import { UserId } from '../../decorators/user-id/user-id.decorator';
-import { ReqUser } from '../../decorators/user/user.decorator';
+import { AuthenticateSupabaseClient } from '~modules/auth/infrastructure/decorators/authenticate-supabase-client/authenticate-supabase-client.decorator';
+import { PublicRoute } from '~modules/auth/infrastructure/decorators/public-route/public-route.decorator';
+import { UserId } from '~modules/auth/infrastructure/decorators/user-id/user-id.decorator';
+import { ReqUser } from '~modules/auth/infrastructure/decorators/user/user.decorator';
 
 @ApiTags('auth')
 @ApiBearerAuth('JWT-auth')

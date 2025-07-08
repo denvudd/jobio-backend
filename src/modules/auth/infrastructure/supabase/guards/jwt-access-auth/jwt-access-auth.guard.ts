@@ -3,8 +3,7 @@ import { Reflector } from '@nestjs/core';
 import { Observable } from 'rxjs';
 
 import { AuthGuardToken, AuthMetadataKey } from '~modules/auth/constants';
-
-import { SupabaseBaseAuthGuard } from '../supabase-base-auth/supabase-base-auth.guard';
+import { SupabaseBaseAuthGuard } from '~modules/auth/infrastructure/supabase/guards/supabase-base-auth/supabase-base-auth.guard';
 
 @Injectable({ scope: Scope.REQUEST })
 export class JwtAccessAuthGuard extends SupabaseBaseAuthGuard(AuthGuardToken.JWT_ACCESS) implements CanActivate {

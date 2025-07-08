@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 
-import { EventBus } from 'src/lib/nest-event-driven';
+import { EventEmitterEventSource } from '~shared/infrastructure/events/event-sources/event-emitter/event-emitter.event-source';
+import { EventEmitterEventPublisher } from '~shared/infrastructure/events/publishers/event-emitter/event-emitter.event-publisher';
+import { EventBusBaseService } from '~shared/infrastructure/events/services/event-integration/base/event-bus-base.service';
 
-import { EventEmitterEventSource } from '../../../event-sources/event-emitter/event-emitter.event-source';
-import { EventEmitterEventPublisher } from '../../../publishers/event-emitter/event-emitter.event-publisher';
-import { EventBusBaseService } from '../base/event-bus-base.service';
+import { EventBus } from 'src/lib/nest-event-driven';
 
 @Injectable()
 export class InMemoryEventIntegrationService extends EventBusBaseService {

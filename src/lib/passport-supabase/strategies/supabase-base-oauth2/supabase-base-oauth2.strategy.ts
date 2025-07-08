@@ -1,8 +1,8 @@
 import { SupabaseClient, createClient } from '@supabase/supabase-js';
 
-import { IOAuth2StrategyOptions, OAuth2Strategy } from 'src/lib/passport-oauth';
+import { ISupabaseClientOptions } from '~lib/passport-supabase/core/types';
 
-import { ISupabaseClientOptions } from '../../core';
+import { IOAuth2StrategyOptions, OAuth2Strategy } from 'src/lib/passport-oauth';
 
 export interface ISupabaseBaseOauthStrategyOptions extends ISupabaseClientOptions {
   oauth: IOAuth2StrategyOptions;

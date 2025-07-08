@@ -1,6 +1,6 @@
-import { IUseCase } from '~shared/application/use-cases/use-case.interface';
+import { UpdateUserPasswordDto } from '~modules/auth/application/dto/update-user-password.dto';
 
-import { UpdateUserPasswordDto } from '../../dto/update-user-password.dto';
+import { IUseCase } from '~shared/application/use-cases/use-case.interface';
 
 export interface IChangePasswordPayload {
   updateDto: UpdateUserPasswordDto;

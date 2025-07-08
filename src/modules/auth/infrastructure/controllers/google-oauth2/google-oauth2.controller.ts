@@ -6,14 +6,13 @@ import { IPerformPostAuthUseCase } from '~modules/auth/application/use-cases/per
 import { AuthDiToken } from '~modules/auth/constants';
 import { User } from '~modules/auth/domain/entities/user.entity';
 import { Session } from '~modules/auth/domain/value-objects/session.value';
+import { PublicRoute } from '~modules/auth/infrastructure/decorators/public-route/public-route.decorator';
+import { ReqSession } from '~modules/auth/infrastructure/decorators/session/session.decorator';
+import { ReqUser } from '~modules/auth/infrastructure/decorators/user/user.decorator';
+import { GoogleOauth2Guard } from '~modules/auth/infrastructure/supabase/guards/google-oauth2/google-oauth2.guard';
 
 import { IAppConfigService } from '~shared/application/services/app-config-service.interface';
 import { BaseToken } from '~shared/constants';
-
-import { PublicRoute } from '../../decorators/public-route/public-route.decorator';
-import { ReqSession } from '../../decorators/session/session.decorator';
-import { ReqUser } from '../../decorators/user/user.decorator';
-import { GoogleOauth2Guard } from '../../supabase/guards/google-oauth2/google-oauth2.guard';
 
 @ApiTags('auth')
 @Controller('auth/oauth')
@@ -40,9 +39,11 @@ export class GoogleOauth2Controller {
   public async googleRedirect(@Res() res: Response, @ReqSession() session: Session, @ReqUser() user: User) {
     await this.performPostAuthUseCase.execute({ user });
     const redirectUrl = new URL(this.appConfig.get('CLIENT_AUTH_REDIRECT_URL'));
+
     redirectUrl.searchParams.set('access-token', session.accessToken);
     redirectUrl.searchParams.set('refresh-token', session.refreshToken);
     redirectUrl.searchParams.set('token_type', 'Bearer');
+
     res.redirect(redirectUrl.toString());
   }
 }

@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Inject, Post, Put, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Inject, Post, Put, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { UserId } from '~modules/auth/infrastructure/decorators/user-id/user-id.decorator';
+import { ReqAccessToken } from '~modules/auth/infrastructure/decorators/session/session.decorator';
 import { JwtAccessAuthGuard } from '~modules/auth/infrastructure/supabase/guards/jwt-access-auth/jwt-access-auth.guard';
 import { CreateUserProfileDto } from '~modules/profiles/application/dto/create-user-profile.dto';
 import { UpdateCandidateProfileDto } from '~modules/profiles/application/dto/update-candidate-profile.dto';
@@ -11,8 +12,6 @@ import { IGetUserProfileWithAuthUseCase } from '~modules/profiles/application/us
 import { IUpdateCandidateProfileUseCase } from '~modules/profiles/application/use-cases/update-candidate-profile/update-candidate-profile-use-case.interface';
 import { IUpdateRecruiterProfileUseCase } from '~modules/profiles/application/use-cases/update-recruiter-profile/update-recruiter-profile-use-case.interface';
 import { ProfilesDiToken } from '~modules/profiles/constants';
-
-import { extractAuthTokenOrThrow } from '~shared/infrastructure/util';
 
 @ApiTags('profiles')
 @ApiBearerAuth('JWT-auth')
@@ -41,8 +40,10 @@ export class ProfilesController {
 
   @ApiOperation({ summary: 'Get my profile', description: 'Get the profile of the authenticated user' })
   @Get('me')
-  async getMyProfile(@UserId() userId: string, @Req() request: any) {
-    const accessToken = extractAuthTokenOrThrow(request);
+  async getMyProfile(
+    @UserId() userId: string,
+    @ReqAccessToken() accessToken: string,
+  ) {
     return this.getUserProfileWithAuthUseCase.execute({ userId, accessToken });
   }
 

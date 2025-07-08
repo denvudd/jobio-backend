@@ -1,10 +1,9 @@
 import { Inject } from '@nestjs/common';
 
+import { IEventDispatcher } from '~shared/application/events/event-dispatcher/event-dispatcher.interface';
+import { IDbContext } from '~shared/application/services/db-context-service.interface';
+import { IUseCase } from '~shared/application/use-cases/use-case.interface';
 import { BaseToken } from '~shared/constants';
-
-import { IEventDispatcher } from '../events/event-dispatcher/event-dispatcher.interface';
-import { IDbContext } from '../services/db-context-service.interface';
-import { IUseCase } from '../use-cases/use-case.interface';
 
 export abstract class Command<TInput = void, TOutput = void> implements IUseCase<TInput, TOutput> {
   protected _input: TInput;

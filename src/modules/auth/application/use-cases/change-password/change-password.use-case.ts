@@ -1,16 +1,18 @@
 import { Inject, Injectable } from '@nestjs/common';
 
+import { PasswordsNotMatchException } from '~modules/auth/application/exceptions/passwords-not-match.exception';
+import { UserHasNoPasswordException } from '~modules/auth/application/exceptions/user-has-no-password.exception';
+import { IPasswordService } from '~modules/auth/application/repositories/password-service.interface';
+import { IAuthService } from '~modules/auth/application/services/auth-service.interface';
+import {
+  IChangePasswordPayload,
+  IChangePasswordUseCase,
+} from '~modules/auth/application/use-cases/change-password/change-password-use-case.interface';
 import { AuthDiToken } from '~modules/auth/constants';
 
 import { Command } from '~shared/application/CQS/command.abstract';
 import { IDbContext } from '~shared/application/services/db-context-service.interface';
 import { BaseToken } from '~shared/constants';
-
-import { PasswordsNotMatchException } from '../../exceptions/passwords-not-match.exception';
-import { UserHasNoPasswordException } from '../../exceptions/user-has-no-password.exception';
-import { IPasswordService } from '../../repositories/password-service.interface';
-import { IAuthService } from '../../services/auth-service.interface';
-import { IChangePasswordPayload, IChangePasswordUseCase } from './change-password-use-case.interface';
 
 @Injectable()
 export class ChangePasswordUseCase extends Command<IChangePasswordPayload> implements IChangePasswordUseCase {

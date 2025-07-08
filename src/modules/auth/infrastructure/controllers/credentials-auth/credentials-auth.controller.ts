@@ -9,11 +9,10 @@ import { AuthDiToken } from '~modules/auth/constants';
 import { User } from '~modules/auth/domain/entities/user.entity';
 import { AuthCredentialsMapper } from '~modules/auth/domain/mappers/auth-credentials/auth-credentials.mapper';
 import { Session } from '~modules/auth/domain/value-objects/session.value';
-
-import { PublicRoute } from '../../decorators/public-route/public-route.decorator';
-import { ReqSession } from '../../decorators/session/session.decorator';
-import { ReqUser } from '../../decorators/user/user.decorator';
-import { CredentialsLoginAuthGuard } from '../../supabase/guards/credentials-login-auth/credentials-login-auth.guard';
+import { PublicRoute } from '~modules/auth/infrastructure/decorators/public-route/public-route.decorator';
+import { ReqSession } from '~modules/auth/infrastructure/decorators/session/session.decorator';
+import { ReqUser } from '~modules/auth/infrastructure/decorators/user/user.decorator';
+import { CredentialsLoginAuthGuard } from '~modules/auth/infrastructure/supabase/guards/credentials-login-auth/credentials-login-auth.guard';
 
 @ApiTags('auth')
 @PublicRoute()
