@@ -47,7 +47,6 @@ export class GetUserProfileWithAuthUseCase
   }> {
     const { userId, accessToken } = this._input;
 
-    // Get auth user data from Supabase using the access token
     const { data, error } = await this.supabaseClientService.client.auth.getUser(accessToken);
     if (error) throw new Error('Failed to get auth user data');
 

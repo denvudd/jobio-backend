@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 
 import { GetAllCategoriesUseCase } from '~modules/categories/application/use-cases/categories/get-all-categories/get-all-categories.use-case';
 import { GetCategoryByIdUseCase } from '~modules/categories/application/use-cases/categories/get-category-by-id/get-category-by-id.use-case';
@@ -7,6 +7,8 @@ import { GetAllSubcategoriesUseCase } from '~modules/categories/application/use-
 import { GetSubcategoriesByCategoryIdUseCase } from '~modules/categories/application/use-cases/subcategories/get-subcategories-by-category-id/get-subcategories-by-category-id.use-case';
 import { GetSubcategoryByIdUseCase } from '~modules/categories/application/use-cases/subcategories/get-subcategory-by-id/get-subcategory-by-id.use-case';
 import { GetSubcategoryByNameUseCase } from '~modules/categories/application/use-cases/subcategories/get-subcategory-by-name/get-subcategory-by-name.use-case';
+import { RunCategorySeedsUseCase } from '~modules/categories/application/use-cases/seeds/run-category-seeds/run-category-seeds.use-case';
+import { RunSubcategorySeedsUseCase } from '~modules/categories/application/use-cases/seeds/run-subcategory-seeds/run-subcategory-seeds.use-case';
 import { CategoriesDiToken } from '~modules/categories/constants';
 import { CategoryMapper } from '~modules/categories/domain/mappers/category/category.mapper';
 import { SubCategoryMapper } from '~modules/categories/domain/mappers/subcategory/subcategory.mapper';
@@ -18,7 +20,7 @@ import { DrizzleSubCategoryRepository } from '~modules/categories/infrastructure
 import { SharedModule } from '~shared/shared.module';
 
 @Module({
-  imports: [SharedModule],
+  imports: [forwardRef(() => SharedModule)],
   providers: [
     CategoryMapper,
     SubCategoryMapper,
@@ -34,15 +36,20 @@ import { SharedModule } from '~shared/shared.module';
       provide: CategoriesDiToken.GET_SUB_CATEGORIES_BY_CATEGORY_ID_USE_CASE,
       useClass: GetSubcategoriesByCategoryIdUseCase,
     },
+    { provide: CategoriesDiToken.RUN_CATEGORY_SEEDS_USE_CASE, useClass: RunCategorySeedsUseCase },
+    { provide: CategoriesDiToken.RUN_SUBCATEGORY_SEEDS_USE_CASE, useClass: RunSubcategorySeedsUseCase },
   ],
   controllers: [CategoriesController, SubcategoriesController],
   exports: [
+    CategoriesDiToken.CATEGORY_REPOSITORY,
     CategoriesDiToken.GET_ALL_CATEGORIES_USE_CASE,
     CategoriesDiToken.GET_CATEGORY_BY_ID_USE_CASE,
     CategoriesDiToken.GET_CATEGORY_BY_NAME_USE_CASE,
     CategoriesDiToken.GET_ALL_SUB_CATEGORIES_USE_CASE,
     CategoriesDiToken.GET_SUB_CATEGORY_BY_ID_USE_CASE,
     CategoriesDiToken.GET_SUB_CATEGORY_BY_NAME_USE_CASE,
+    CategoriesDiToken.RUN_CATEGORY_SEEDS_USE_CASE,
+    CategoriesDiToken.RUN_SUBCATEGORY_SEEDS_USE_CASE,
   ],
 })
 export class CategoriesModule {}

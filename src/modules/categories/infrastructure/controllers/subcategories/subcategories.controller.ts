@@ -31,19 +31,19 @@ export class SubcategoriesController {
   }
 
   @ApiOperation({ summary: 'Get subcategories by category id' })
-  @Get('category/:id')
+  @Get('by-category/:id')
   async getSubcategoriesByCategoryId(@Param('id') id: string) {
     return this.getSubcategoriesByCategoryIdUseCase.execute({ categoryId: id });
   }
 
   @ApiOperation({ summary: 'Get a subcategory by id' })
-  @Get(':id')
+  @Get('id/:id')
   async getSubcategory(@Param('id') id: string) {
     return this.getSubcategoryByIdUseCase.execute({ id });
   }
 
   @ApiOperation({ summary: 'Get a subcategory by name' })
-  @Get(':name')
+  @Get('name/:name')
   async getSubcategoryByName(@Param('name') name: string) {
     return this.getSubcategoryByNameUseCase.execute({ name });
   }

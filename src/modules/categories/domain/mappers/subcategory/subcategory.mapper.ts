@@ -13,6 +13,7 @@ export interface ISubCategoryDataAccess {
 export class SubCategoryMapper implements IDataAccessMapper<SubCategory, ISubCategoryDataAccess> {
   toDomain(persistence: ISubCategoryDataAccess): SubCategory {
     return SubCategory.builder(persistence.name, persistence.categoryId)
+      .id(persistence.id)
       .createdAt(persistence.createdAt)
       .updatedAt(persistence.updatedAt)
       .build();

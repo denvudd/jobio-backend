@@ -76,4 +76,8 @@ export abstract class DrizzleRepository<
       .delete(this.tableDefinition.table)
       .where(eq(this.tableDefinition.table[this.tableDefinition.idKey], id));
   }
+
+  public async deleteAll(): Promise<void> {
+    await this.db.delete(this.tableDefinition.table);
+  }
 }

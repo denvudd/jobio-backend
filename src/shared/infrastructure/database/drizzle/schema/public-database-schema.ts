@@ -108,6 +108,6 @@ export const subCategory = pgTable(
     nameIdx: index('sub_category_name_idx').on(table.name),
     nameUnique: uniqueIndex('sub_category_name_unique').on(table.name),
     categoryIdIdx: index('sub_category_category_id_idx').on(table.categoryId),
-    categoryIdUnique: uniqueIndex('sub_category_category_id_unique').on(table.categoryId),
+    categoryNameUnique: uniqueIndex('sub_category_category_name_unique').on(table.categoryId, table.name),
   }),
 );

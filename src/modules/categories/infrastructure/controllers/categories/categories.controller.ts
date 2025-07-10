@@ -28,7 +28,7 @@ export class CategoriesController {
   }
 
   @ApiOperation({ summary: 'Get a category by id' })
-  @Get(':id')
+  @Get('id/:id')
   async getCategory(@Param('id') id: string) {
     return this.getCategoryByIdUseCase.execute({ id });
   }

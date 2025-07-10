@@ -22,6 +22,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "db:generate": "dotenv -e config/.env -- drizzle-kit generate --config=./config/drizzle.config.ts",
     "db:push": "dotenv -e config/.env -- drizzle-kit migrate --config=./config/drizzle.config.ts",
+    "db:seeds": "npm run build && node dist/src/cli.js run-all",
     "pre-commit": "lint-staged",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
@@ -33,7 +34,8 @@
     "docker:restart:backend": "docker-compose restart backend",
     "docker:exec": "docker-compose exec backend",
     "docker:db:migrate": "docker-compose exec backend npm run db:push",
-    "docker:db:generate": "docker-compose exec backend npm run db:generate"
+    "docker:db:generate": "docker-compose exec backend npm run db:generate",
+    "docker:db:seeds": "docker-compose exec backend npm run db:seeds"
   },
   "lint-staged": {
     "**/*.{ts,tsx,js,jsx}": [
