@@ -32,19 +32,14 @@ export class CreateUserProfileUseCase
   protected async implementation(): Promise<void> {
     const { userId, fullName, role } = this._input;
 
-    // Create user details
-    const userDetailsId = crypto.randomUUID();
-    const userDetails = UserDetails.builder(userDetailsId, userId, role).fullName(fullName).build();
+    const userDetails = UserDetails.builder(userId, role).fullName(fullName).build();
     const savedUserDetails = await this.userDetailsRepository.create(userDetails);
 
-    // Create corresponding profile
     if (role === UserRole.CANDIDATE) {
-      const candidateProfileId = crypto.randomUUID();
-      const candidateProfile = CandidateProfile.builder(candidateProfileId, savedUserDetails.id).build();
+      const candidateProfile = CandidateProfile.builder(savedUserDetails.id).build();
       await this.candidateProfileRepository.create(candidateProfile);
     } else if (role === UserRole.RECRUITER) {
-      const recruiterProfileId = crypto.randomUUID();
-      const recruiterProfile = RecruiterProfile.builder(recruiterProfileId, savedUserDetails.id).build();
+      const recruiterProfile = RecruiterProfile.builder(savedUserDetails.id).build();
       await this.recruiterProfileRepository.create(recruiterProfile);
     }
   }

@@ -27,9 +27,8 @@ export class RecruiterProfile {
     return this.telegram || this.phone || this.linkedin || null;
   }
 
-  public static builder(id: string, userDetailsId: string) {
+  public static builder(userDetailsId: string) {
     return Builder(RecruiterProfile, {
-      id,
       userDetailsId,
       createdAt: new Date(),
       updatedAt: new Date(),

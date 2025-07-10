@@ -23,7 +23,8 @@ export interface ICandidateProfileDataAccess {
 
 export class CandidateProfileMapper implements IDataAccessMapper<CandidateProfile, ICandidateProfileDataAccess> {
   toDomain(persistence: ICandidateProfileDataAccess): CandidateProfile {
-    return CandidateProfile.builder(persistence.id, persistence.userDetailsId)
+    return CandidateProfile.builder(persistence.userDetailsId)
+      .id(persistence.id)
       .position(persistence.position)
       .skills(persistence.skills)
       .experience(persistence.experience)

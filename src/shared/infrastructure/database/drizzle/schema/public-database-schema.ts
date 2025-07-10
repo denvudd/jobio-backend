@@ -14,7 +14,7 @@ import {
 export const userDetails = pgTable(
   'user_details',
   {
-    id: uuid('id').primaryKey().notNull(),
+    id: uuid('id').primaryKey().notNull().defaultRandom(),
     userId: uuid('user_id').notNull(),
     fullName: varchar('full_name', { length: 255 }),
     role: varchar('role', { length: 50 }).notNull().default('candidate'),
@@ -31,7 +31,7 @@ export const userDetails = pgTable(
 export const candidateProfile = pgTable(
   'candidate_profile',
   {
-    id: uuid('id').primaryKey().notNull(),
+    id: uuid('id').primaryKey().notNull().defaultRandom(),
     userDetailsId: uuid('user_details_id')
       .references(() => userDetails.id, { onDelete: 'cascade' })
       .notNull(),
@@ -60,7 +60,7 @@ export const candidateProfile = pgTable(
 export const recruiterProfile = pgTable(
   'recruiter_profile',
   {
-    id: uuid('id').primaryKey().notNull(),
+    id: uuid('id').primaryKey().notNull().defaultRandom(),
     userDetailsId: uuid('user_details_id')
       .references(() => userDetails.id, { onDelete: 'cascade' })
       .notNull(),
@@ -76,5 +76,38 @@ export const recruiterProfile = pgTable(
     userDetailsIdIdx: index('recruiter_profile_user_details_id_idx').on(table.userDetailsId),
     companyIdx: index('recruiter_profile_company_idx').on(table.company),
     userDetailsIdUnique: uniqueIndex('recruiter_profile_user_details_id_unique').on(table.userDetailsId),
+  }),
+);
+
+export const category = pgTable(
+  'category',
+  {
+    id: uuid('id').primaryKey().notNull().defaultRandom(),
+    name: varchar('name', { length: 255 }).notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true, mode: 'date' }).defaultNow(),
+  },
+  (table) => ({
+    nameIdx: index('category_name_idx').on(table.name),
+    nameUnique: uniqueIndex('category_name_unique').on(table.name),
+  }),
+);
+
+export const subCategory = pgTable(
+  'sub_category',
+  {
+    id: uuid('id').primaryKey().notNull().defaultRandom(),
+    name: varchar('name', { length: 255 }).notNull(),
+    categoryId: uuid('category_id')
+      .references(() => category.id, { onDelete: 'cascade' })
+      .notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true, mode: 'date' }).defaultNow(),
+  },
+  (table) => ({
+    nameIdx: index('sub_category_name_idx').on(table.name),
+    nameUnique: uniqueIndex('sub_category_name_unique').on(table.name),
+    categoryIdIdx: index('sub_category_category_id_idx').on(table.categoryId),
+    categoryIdUnique: uniqueIndex('sub_category_category_id_unique').on(table.categoryId),
   }),
 );

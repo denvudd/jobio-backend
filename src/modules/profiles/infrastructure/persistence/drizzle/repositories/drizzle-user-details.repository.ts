@@ -17,6 +17,7 @@ import {
   DrizzleRepository,
   TableDefinition,
 } from '~shared/infrastructure/database/drizzle/repository/drizzle.repository';
+import { MergedDbSchema } from '~shared/infrastructure/database/drizzle/schema';
 import { userDetails } from '~shared/infrastructure/database/drizzle/schema/public-database-schema';
 
 @Injectable()
@@ -25,7 +26,7 @@ export class DrizzleUserDetailsRepository
   implements IUserDetailsRepository
 {
   constructor(
-    @Inject(POSTGRES_DB) db: NodePgDatabase<any>,
+    @Inject(POSTGRES_DB) db: NodePgDatabase<MergedDbSchema>,
     @Inject(UserDetailsMapper) mapper: IDataAccessMapper<UserDetails, IUserDetailsDataAccess>,
   ) {
     super(TableDefinition.create(userDetails, 'id'), db, mapper);

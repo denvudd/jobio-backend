@@ -42,14 +42,18 @@ export abstract class DrizzleRepository<
       .from(this.tableDefinition.table)
       .where(eq(this.tableDefinition.table[this.tableDefinition.idKey], id))
       .limit(1);
+
     if (!result) return null;
+
     return this.mapper.toDomain(result as any);
   }
+
   public async create(entity: TEntity): Promise<TEntity> {
     const [result] = (await this.db
       .insert(this.tableDefinition.table)
       .values(this.mapper.toPersistence(entity))
       .returning({ id: this.tableDefinition.table[this.tableDefinition.idKey] })) as any[];
+
     if (!result) return null;
 
     return this.findById(result.id);
@@ -61,7 +65,9 @@ export abstract class DrizzleRepository<
       .values(this.mapper.toPersistence(entity))
       .onConflictDoUpdate({ target: [this.tableDefinition.table[this.tableDefinition.idKey]], set: entity })
       .returning({ id: this.tableDefinition.table[this.tableDefinition.idKey] })) as any[];
+
     if (!result) return null;
+
     return this.findById(result.id);
   }
 
