@@ -5,6 +5,7 @@ import { IUserRepository } from '~modules/auth/application/repositories/user-rep
 import { DrizzleUserRepository } from '~modules/auth/infrastructure/persistence/drizzle/repositories/drizzle-user.repository';
 
 import { IDbContext } from '~shared/application/services/db-context-service.interface';
+import { MergedDbSchema } from '~shared/infrastructure/database/drizzle/schema';
 
 import { CoreToken } from 'src/core/constants';
 import { POSTGRES_DB } from 'src/lib/drizzle-postgres';
@@ -12,8 +13,8 @@ import { PromiseWithResolvers, withResolvers } from 'src/lib/promise-with-resolv
 
 @Injectable({ scope: Scope.REQUEST })
 export class DrizzleDbContext implements IDbContext {
-  private _db: NodePgDatabase<any>;
-  private _transaction: NodePgDatabase<any>;
+  private _db: NodePgDatabase<MergedDbSchema>;
+  private _transaction: NodePgDatabase<MergedDbSchema>;
   private _transactionPromise: Promise<unknown>;
   private _transactionCompletionPromise: PromiseWithResolvers<void>;
 
@@ -24,7 +25,7 @@ export class DrizzleDbContext implements IDbContext {
   }
 
   constructor(
-    @Inject(POSTGRES_DB) db: NodePgDatabase<any>,
+    @Inject(POSTGRES_DB) db: NodePgDatabase<MergedDbSchema>,
     @Inject(CoreToken.APP_LOGGER) private readonly logger: Logger,
   ) {
     this._db = db;

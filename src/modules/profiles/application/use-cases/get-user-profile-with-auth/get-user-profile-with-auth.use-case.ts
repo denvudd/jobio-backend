@@ -47,18 +47,15 @@ export class GetUserProfileWithAuthUseCase
   }> {
     const { userId, accessToken } = this._input;
 
-    // Get auth user data from Supabase using the access token
     const { data, error } = await this.supabaseClientService.client.auth.getUser(accessToken);
     if (error) throw new Error('Failed to get auth user data');
 
-    // Verify that the requested userId matches the authenticated user
     if (data.user.id !== userId) {
       throw new Error('Unauthorized access to user profile');
     }
 
     const authUser = this.supabaseUserMapper.toDomain(data.user);
 
-    // Get user details from our database
     const userDetails = await this.userDetailsRepository.findByUserId(userId);
 
     if (!userDetails) {
@@ -67,14 +64,12 @@ export class GetUserProfileWithAuthUseCase
 
     let profile = null;
 
-    // Get profile based on user role
     if (userDetails.role === UserRole.CANDIDATE) {
       profile = await this.candidateProfileRepository.findByUserDetailsId(userDetails.id);
     } else if (userDetails.role === UserRole.RECRUITER) {
       profile = await this.recruiterProfileRepository.findByUserDetailsId(userDetails.id);
     }
 
-    // Create combined user object
     const userWithDetails: IUserWithDetails = {
       ...authUser,
       fullName: userDetails.fullName,

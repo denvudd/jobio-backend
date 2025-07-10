@@ -54,6 +54,11 @@ npm run docker:up
 docker-compose exec backend npm run db:push
 ```
 
+5. **Seed the database (optional):**
+```bash
+docker-compose exec backend npm run seeds:run-all
+```
+
 ### Available Services
 - **API**: http://localhost:8080
 - **Documentation**: http://localhost:8080/api-docs
@@ -91,6 +96,22 @@ $ npm run db:generate
 2. **Apply migrations to database:**
 ```bash
 $ npm run db:push
+```
+
+### Database Seeding
+
+```bash
+# Run all seeds (clears existing data)
+$ npm run seeds:run-all
+
+# Test seeds without making changes
+$ npm run seeds:dry-run
+
+# Add new seeds without clearing existing data
+$ npm run seeds:no-clear
+
+# Test mode (dry-run + no clear)
+$ npm run seeds:test
 ```
 
 ### Compile and run the project

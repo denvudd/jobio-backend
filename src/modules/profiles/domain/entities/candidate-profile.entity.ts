@@ -38,9 +38,8 @@ export class CandidateProfile {
     return !!this.position && this.hasSkills && !!this.experienceDescription;
   }
 
-  public static builder(id: string, userDetailsId: string) {
+  public static builder(userDetailsId: string) {
     return Builder(CandidateProfile, {
-      id,
       userDetailsId,
       skills: [],
       createdAt: new Date(),

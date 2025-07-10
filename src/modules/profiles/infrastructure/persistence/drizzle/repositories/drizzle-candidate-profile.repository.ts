@@ -16,6 +16,7 @@ import {
   DrizzleRepository,
   TableDefinition,
 } from '~shared/infrastructure/database/drizzle/repository/drizzle.repository';
+import { MergedDbSchema } from '~shared/infrastructure/database/drizzle/schema';
 import { candidateProfile } from '~shared/infrastructure/database/drizzle/schema/public-database-schema';
 
 @Injectable()
@@ -24,7 +25,7 @@ export class DrizzleCandidateProfileRepository
   implements ICandidateProfileRepository
 {
   constructor(
-    @Inject(POSTGRES_DB) db: NodePgDatabase<any>,
+    @Inject(POSTGRES_DB) db: NodePgDatabase<MergedDbSchema>,
     @Inject(CandidateProfileMapper) mapper: IDataAccessMapper<CandidateProfile, ICandidateProfileDataAccess>,
   ) {
     super(TableDefinition.create(candidateProfile, 'id'), db, mapper);

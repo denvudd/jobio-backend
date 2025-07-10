@@ -40,7 +40,6 @@ export class UpdateRecruiterProfileUseCase
       throw new Error('Recruiter profile not found');
     }
 
-    // Обновляем профиль с новыми данными
     const updatedProfile = new (recruiterProfile.constructor as any)(
       recruiterProfile.id,
       recruiterProfile.userDetailsId,
@@ -50,7 +49,7 @@ export class UpdateRecruiterProfileUseCase
       updateData.company ?? recruiterProfile.company,
       updateData.website ?? recruiterProfile.website,
       recruiterProfile.createdAt,
-      new Date(), // Обновляем updatedAt
+      new Date(),
     );
 
     await this.recruiterProfileRepository.save(updatedProfile);

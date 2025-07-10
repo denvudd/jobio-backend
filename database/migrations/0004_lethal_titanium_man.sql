@@ -1,0 +1,2 @@
+DROP INDEX IF EXISTS "sub_category_category_id_unique";--> statement-breakpoint
+CREATE UNIQUE INDEX IF NOT EXISTS "sub_category_category_name_unique" ON "sub_category" USING btree ("category_id","name");

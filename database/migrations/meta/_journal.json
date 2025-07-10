@@ -15,6 +15,27 @@
       "when": 1751830900040,
       "tag": "0001_fair_jasper_sitwell",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1752084983044,
+      "tag": "0002_lowly_senator_kelly",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1752086171579,
+      "tag": "0003_abnormal_purifiers",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1752171490194,
+      "tag": "0004_lethal_titanium_man",
+      "breakpoints": true
     }
   ]
 }

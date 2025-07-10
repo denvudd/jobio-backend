@@ -16,7 +16,8 @@ export interface IRecruiterProfileDataAccess {
 
 export class RecruiterProfileMapper implements IDataAccessMapper<RecruiterProfile, IRecruiterProfileDataAccess> {
   toDomain(persistence: IRecruiterProfileDataAccess): RecruiterProfile {
-    return RecruiterProfile.builder(persistence.id, persistence.userDetailsId)
+    return RecruiterProfile.builder(persistence.userDetailsId)
+      .id(persistence.id)
       .telegram(persistence.telegram)
       .phone(persistence.phone)
       .linkedin(persistence.linkedin)

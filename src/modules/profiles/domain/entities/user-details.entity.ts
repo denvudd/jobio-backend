@@ -26,9 +26,8 @@ export class UserDetails {
     return this.fullName || 'Unknown User';
   }
 
-  public static builder(id: string, userId: string, role: UserRole) {
+  public static builder(userId: string, role: UserRole) {
     return Builder(UserDetails, {
-      id,
       userId,
       role,
       createdAt: new Date(),

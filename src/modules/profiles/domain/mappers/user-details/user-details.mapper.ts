@@ -14,7 +14,8 @@ export interface IUserDetailsDataAccess {
 
 export class UserDetailsMapper implements IDataAccessMapper<UserDetails, IUserDetailsDataAccess> {
   toDomain(persistence: IUserDetailsDataAccess): UserDetails {
-    return UserDetails.builder(persistence.id, persistence.userId, persistence.role as UserRole)
+    return UserDetails.builder(persistence.userId, persistence.role as UserRole)
+      .id(persistence.id)
       .fullName(persistence.fullName)
       .createdAt(persistence.createdAt)
       .updatedAt(persistence.updatedAt)
