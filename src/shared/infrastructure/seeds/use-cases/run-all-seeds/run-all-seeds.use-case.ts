@@ -22,12 +22,15 @@ export class RunAllSeedsUseCase implements IRunAllSeedsUseCase {
     private readonly runSubcategorySeedsUseCase: RunSubcategorySeedsUseCase,
   ) {}
 
-  async execute(_input: IBaseSeedInput = {}): Promise<RunAllSeedsOutput> {
+  async execute(input: IBaseSeedInput = {}): Promise<RunAllSeedsOutput> {
+    const { clearExisting = true, dryRun = false } = input;
+    
     this.logger.log('Starting execution of all seeds...');
+    this.logger.log(`Clear existing: ${clearExisting}, Dry run: ${dryRun}`);
 
     const seeders: Array<{
       name: string;
-      useCase: { execute: () => Promise<SeedResult> };
+      useCase: { execute: (input: IBaseSeedInput) => Promise<SeedResult> };
     }> = [
       { name: 'categorySeeds', useCase: this.runCategorySeedsUseCase },
       { name: 'subcategorySeeds', useCase: this.runSubcategorySeedsUseCase },
@@ -41,7 +44,7 @@ export class RunAllSeedsUseCase implements IRunAllSeedsUseCase {
       try {
         this.logger.log(`Running ${seeder.name}...`);
 
-        const result = await seeder.useCase.execute();
+        const result = await seeder.useCase.execute({ clearExisting, dryRun });
 
         results[seeder.name] = {
           success: result.success,

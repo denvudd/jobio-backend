@@ -5,14 +5,10 @@ import { SubCategory } from '~modules/categories/domain/entities/subcategory.ent
 import { ICategoryRepository } from '~modules/categories/domain/repositories/category-repository.interface';
 import { ISubCategoryRepository } from '~modules/categories/domain/repositories/subcategory-repository.interface';
 
-import {
-  IBaseSeedInput,
-  IBaseSeedOutput,
-} from '~shared/infrastructure/seeds/use-cases/base-seed/base-seed-use-case.interface';
 import { BaseSeedUseCase } from '~shared/infrastructure/seeds/use-cases/base-seed/base-seed.use-case';
 
 @Injectable()
-export class RunSubcategorySeedsUseCase extends BaseSeedUseCase<IBaseSeedInput, IBaseSeedOutput> {
+export class RunSubcategorySeedsUseCase extends BaseSeedUseCase {
   constructor(
     @Inject(CategoriesDiToken.SUB_CATEGORY_REPOSITORY)
     private readonly subCategoryRepository: ISubCategoryRepository,
