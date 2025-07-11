@@ -11,6 +11,7 @@ import { SeedsModule } from '~shared/infrastructure/seeds/seeds.module';
 import { EventEmitterEventSource } from '~shared/infrastructure/events/event-sources/event-emitter/event-emitter.event-source';
 import { EventEmitterEventPublisher } from '~shared/infrastructure/events/publishers/event-emitter/event-emitter.event-publisher';
 import { InMemoryEventIntegrationService } from '~shared/infrastructure/events/services/event-integration/in-memory/in-memory-event-integration.service';
+import { PaginationService } from '~shared/infrastructure/services/pagination/pagination.service';
 import { validateConfig } from '~shared/infrastructure/util/validate-config';
 
 import { EventDrivenModule } from 'src/lib/nest-event-driven/event-driven.module';
@@ -34,6 +35,7 @@ import { EventDrivenModule } from 'src/lib/nest-event-driven/event-driven.module
     InMemoryEventIntegrationService,
     EventEmitterEventPublisher,
     EventEmitterEventSource,
+    { provide: BaseToken.PAGINATION_SERVICE, useClass: PaginationService },
     {
       provide: BaseToken.EVENT_DISPATCHER,
       useFactory: (integrationService: IEventIntegrationService) => new EventDispatcher(integrationService),
@@ -41,6 +43,6 @@ import { EventDrivenModule } from 'src/lib/nest-event-driven/event-driven.module
       scope: Scope.REQUEST,
     },
   ],
-  exports: [BaseToken.APP_CONFIG, BaseToken.EVENT_DISPATCHER],
+  exports: [BaseToken.APP_CONFIG, BaseToken.EVENT_DISPATCHER, BaseToken.PAGINATION_SERVICE],
 })
 export class SharedModule {}

@@ -1,11 +1,15 @@
 import { Controller, Get, Inject, Param } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { PublicRoute } from '~modules/auth/infrastructure/decorators/public-route/public-route.decorator';
 import { IGetAllCategoriesUseCase } from '~modules/categories/application/use-cases/categories/get-all-categories/get-all-categories-use-case.interface';
 import { IGetCategoryByIdUseCase } from '~modules/categories/application/use-cases/categories/get-category-by-id/get-category-by-id-use-case.interface';
 import { IGetCategoryByNameUseCase } from '~modules/categories/application/use-cases/categories/get-category-by-name/get-category-by-name-use-case.interface';
 import { CategoriesDiToken } from '~modules/categories/constants';
+
+import { PaginationQueryDto } from '~shared/application/dto/pagination.dto';
+import { PaginationResult } from '~shared/application/models/pagination.model';
+import { PaginationQuery } from '~shared/infrastructure/decorators/pagination/pagination.decorator';
 
 @ApiTags('categories')
 @PublicRoute()
@@ -21,10 +25,11 @@ export class CategoriesController {
   ) {}
 
   @ApiOperation({ summary: 'Get all categories' })
+  @ApiQuery({ type: PaginationQueryDto })
+  @ApiResponse({ type: PaginationResult })
   @Get()
-  async getCategories() {
-    // TODO: Add pagination
-    return this.getAllCategoriesUseCase.execute(null);
+  async getCategories(@PaginationQuery() query: PaginationQueryDto) {
+    return this.getAllCategoriesUseCase.execute(query);
   }
 
   @ApiOperation({ summary: 'Get a category by id' })

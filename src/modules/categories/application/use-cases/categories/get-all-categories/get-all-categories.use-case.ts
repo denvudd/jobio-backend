@@ -4,12 +4,15 @@ import { IGetAllCategoriesUseCase } from '~modules/categories/application/use-ca
 import { CategoriesDiToken } from '~modules/categories/constants';
 import { Category } from '~modules/categories/domain/entities/category.entity';
 import { ICategoryRepository } from '~modules/categories/domain/repositories/category-repository.interface';
+import { PaginationQueryDto } from '~shared/application/dto/pagination.dto';
 
-import { Query } from '~shared/application/CQS/query.abstract';
+import { PaginatedQuery } from '~shared/application/CQS/paginated-query.abstract';
 
-// TODO: Add pagination
 @Injectable()
-export class GetAllCategoriesUseCase extends Query<null, Category[]> implements IGetAllCategoriesUseCase {
+export class GetAllCategoriesUseCase
+  extends PaginatedQuery<PaginationQueryDto, Category>
+  implements IGetAllCategoriesUseCase
+{
   constructor(
     @Inject(CategoriesDiToken.CATEGORY_REPOSITORY)
     private readonly categoryRepository: ICategoryRepository,
@@ -17,7 +20,15 @@ export class GetAllCategoriesUseCase extends Query<null, Category[]> implements 
     super();
   }
 
-  protected async implementation(): Promise<Category[]> {
-    return this.categoryRepository.findAll();
+  protected async getItems(input: PaginationQueryDto): Promise<Category[]> {
+    return this.categoryRepository.findAll(input);
   }
-}
+
+  protected async getTotal(input: PaginationQueryDto): Promise<number> {
+    return this.categoryRepository.count();
+  }
+
+  protected getBaseUrl(input: PaginationQueryDto): string {
+    return '/categories';
+  }
+} 
