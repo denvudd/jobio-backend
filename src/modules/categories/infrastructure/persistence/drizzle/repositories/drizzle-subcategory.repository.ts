@@ -11,6 +11,7 @@ import {
 } from '~modules/categories/domain/mappers/subcategory/subcategory.mapper';
 import { ISubCategoryRepository } from '~modules/categories/domain/repositories/subcategory-repository.interface';
 
+import { PaginationQueryDto } from '~shared/application/dto/pagination.dto';
 import { IDataAccessMapper } from '~shared/domain/mappers';
 import {
   DrizzleRepository,
@@ -31,8 +32,11 @@ export class DrizzleSubCategoryRepository
     super(TableDefinition.create(subCategory, 'id'), db, mapper);
   }
 
-  public async findAll(): Promise<SubCategory[]> {
-    const result = await this.db.select().from(subCategory);
+  public async findAll(query: PaginationQueryDto): Promise<SubCategory[]> {
+    const { page = 1, limit = 10 } = query;
+    const offset = (page - 1) * limit;
+
+    const result = await this.db.select().from(subCategory).limit(limit).offset(offset);
 
     return result.map((item) => this.mapper.toDomain(item));
   }
@@ -45,9 +49,27 @@ export class DrizzleSubCategoryRepository
     return this.mapper.toDomain(result);
   }
 
-  public async findByCategoryId(categoryId: string): Promise<SubCategory[]> {
-    const result = await this.db.select().from(subCategory).where(eq(subCategory.categoryId, categoryId));
+  public async findByCategoryId(categoryId: string, query: PaginationQueryDto): Promise<SubCategory[]> {
+    const { page = 1, limit = 10 } = query;
+    const offset = (page - 1) * limit;
+
+    const result = await this.db
+      .select()
+      .from(subCategory)
+      .where(eq(subCategory.categoryId, categoryId))
+      .limit(limit)
+      .offset(offset);
 
     return result.map((item) => this.mapper.toDomain(item));
+  }
+
+  public async count(): Promise<number> {
+    const result = await this.db.select().from(subCategory);
+    return result.length;
+  }
+
+  public async countByCategoryId(categoryId: string): Promise<number> {
+    const result = await this.db.select().from(subCategory).where(eq(subCategory.categoryId, categoryId));
+    return result.length;
   }
 }

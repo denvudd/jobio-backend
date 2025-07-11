@@ -1,27 +1,36 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { IGetSubcategoriesByCategoryIdUseCase } from '~modules/categories/application/use-cases/subcategories/get-subcategories-by-category-id/get-subcategories-by-category-id-use-case.interface';
+import {
+  GetSubcategoriesByCategoryIdInput,
+  IGetSubcategoriesByCategoryIdUseCase,
+} from '~modules/categories/application/use-cases/subcategories/get-subcategories-by-category-id/get-subcategories-by-category-id-use-case.interface';
 import { CategoriesDiToken } from '~modules/categories/constants';
 import { SubCategory } from '~modules/categories/domain/entities/subcategory.entity';
 import { ISubCategoryRepository } from '~modules/categories/domain/repositories/subcategory-repository.interface';
 
-import { Query } from '~shared/application/CQS/query.abstract';
+import { PaginatedQuery } from '~shared/application/CQS/paginated-query.abstract';
 
 @Injectable()
 export class GetSubcategoriesByCategoryIdUseCase
-  extends Query<{ categoryId: string }, SubCategory[]>
+  extends PaginatedQuery<GetSubcategoriesByCategoryIdInput, SubCategory>
   implements IGetSubcategoriesByCategoryIdUseCase
 {
   constructor(
     @Inject(CategoriesDiToken.SUB_CATEGORY_REPOSITORY)
-    private readonly subcategoryRepository: ISubCategoryRepository,
+    private readonly subCategoryRepository: ISubCategoryRepository,
   ) {
     super();
   }
 
-  protected async implementation(): Promise<SubCategory[]> {
-    const { categoryId } = this._input;
+  protected async getItems(input: GetSubcategoriesByCategoryIdInput): Promise<SubCategory[]> {
+    return this.subCategoryRepository.findByCategoryId(input.categoryId, input);
+  }
 
-    return this.subcategoryRepository.findByCategoryId(categoryId);
+  protected async getTotal(input: GetSubcategoriesByCategoryIdInput): Promise<number> {
+    return this.subCategoryRepository.countByCategoryId(input.categoryId);
+  }
+
+  protected getBaseUrl(input: GetSubcategoriesByCategoryIdInput): string {
+    return `/subcategories/by-category/${input.categoryId}`;
   }
 }

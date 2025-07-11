@@ -8,6 +8,7 @@ import { Category } from '~modules/categories/domain/entities/category.entity';
 import { CategoryMapper, ICategoryDataAccess } from '~modules/categories/domain/mappers/category/category.mapper';
 import { ICategoryRepository } from '~modules/categories/domain/repositories/category-repository.interface';
 
+import { PaginationQueryDto } from '~shared/application/dto/pagination.dto';
 import { IDataAccessMapper } from '~shared/domain/mappers';
 import {
   DrizzleRepository,
@@ -28,8 +29,11 @@ export class DrizzleCategoryRepository
     super(TableDefinition.create(category, 'id'), db, mapper);
   }
 
-  public async findAll(): Promise<Category[]> {
-    const result = await this.db.select().from(category);
+  public async findAll(query: PaginationQueryDto): Promise<Category[]> {
+    const { page = 1, limit = 10 } = query;
+    const offset = (page - 1) * limit;
+
+    const result = await this.db.select().from(category).limit(limit).offset(offset);
 
     return result.map((item) => this.mapper.toDomain(item));
   }
@@ -40,5 +44,10 @@ export class DrizzleCategoryRepository
     if (!result) return null;
 
     return this.mapper.toDomain(result);
+  }
+
+  public async count(): Promise<number> {
+    const result = await this.db.select().from(category);
+    return result.length;
   }
 }
