@@ -4,5 +4,4 @@ import { IBaseRepository } from '~shared/domain/repositories/base-repository.int
 
 export interface IRecruiterProfileRepository extends IBaseRepository<RecruiterProfile, string> {
   findByUserDetailsId(userDetailsId: string): Promise<RecruiterProfile | null>;
-  findByCompany(company: string): Promise<RecruiterProfile[]>;
 }
