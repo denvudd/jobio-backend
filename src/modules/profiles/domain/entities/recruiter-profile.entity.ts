@@ -6,7 +6,6 @@ export class RecruiterProfile {
   public readonly telegram?: string | null;
   public readonly phone?: string | null;
   public readonly linkedin?: string | null;
-  public readonly company?: string | null;
   public readonly website?: string | null;
   public readonly createdAt: Date;
   public readonly updatedAt: Date;
@@ -16,7 +15,7 @@ export class RecruiterProfile {
   }
 
   public get hasCompanyInfo(): boolean {
-    return !!(this.company || this.website);
+    return !!this.website;
   }
 
   public get isComplete(): boolean {

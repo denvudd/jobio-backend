@@ -3,6 +3,8 @@ import { Inject, Injectable, Logger } from '@nestjs/common';
 import { RunCategorySeedsUseCase } from '~modules/categories/application/use-cases/seeds/run-category-seeds/run-category-seeds.use-case';
 import { RunSubcategorySeedsUseCase } from '~modules/categories/application/use-cases/seeds/run-subcategory-seeds/run-subcategory-seeds.use-case';
 import { CategoriesDiToken } from '~modules/categories/constants';
+import { RunCompanySeedsUseCase } from '~modules/companies/application/use-cases/seeds/run-company-seeds/run-company-seeds.use-case';
+import { CompaniesDiToken } from '~modules/companies/constants';
 
 import { IBaseSeedInput } from '~shared/infrastructure/seeds/use-cases/base-seed/base-seed-use-case.interface';
 import {
@@ -20,11 +22,13 @@ export class RunAllSeedsUseCase implements IRunAllSeedsUseCase {
     private readonly runCategorySeedsUseCase: RunCategorySeedsUseCase,
     @Inject(CategoriesDiToken.RUN_SUBCATEGORY_SEEDS_USE_CASE)
     private readonly runSubcategorySeedsUseCase: RunSubcategorySeedsUseCase,
+    @Inject(CompaniesDiToken.RUN_COMPANY_SEEDS_USE_CASE)
+    private readonly runCompanySeedsUseCase: RunCompanySeedsUseCase,
   ) {}
 
   async execute(input: IBaseSeedInput = {}): Promise<RunAllSeedsOutput> {
     const { clearExisting = true, dryRun = false } = input;
-    
+
     this.logger.log('Starting execution of all seeds...');
     this.logger.log(`Clear existing: ${clearExisting}, Dry run: ${dryRun}`);
 
@@ -34,6 +38,7 @@ export class RunAllSeedsUseCase implements IRunAllSeedsUseCase {
     }> = [
       { name: 'categorySeeds', useCase: this.runCategorySeedsUseCase },
       { name: 'subcategorySeeds', useCase: this.runSubcategorySeedsUseCase },
+      { name: 'companySeeds', useCase: this.runCompanySeedsUseCase },
     ];
 
     const results: RunAllSeedsOutput['results'] = Object.fromEntries(

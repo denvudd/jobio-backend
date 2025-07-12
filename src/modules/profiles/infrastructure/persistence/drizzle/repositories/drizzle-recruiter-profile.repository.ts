@@ -31,6 +31,8 @@ export class DrizzleRecruiterProfileRepository
     super(TableDefinition.create(recruiterProfile, 'id'), db, mapper);
   }
 
+
+
   async findByUserDetailsId(userDetailsId: string): Promise<RecruiterProfile | null> {
     const [result] = await this.db
       .select()
@@ -40,11 +42,5 @@ export class DrizzleRecruiterProfileRepository
 
     if (!result) return null;
     return this.mapper.toDomain(result as IRecruiterProfileDataAccess);
-  }
-
-  async findByCompany(company: string): Promise<RecruiterProfile[]> {
-    const results = await this.db.select().from(recruiterProfile).where(eq(recruiterProfile.company, company));
-
-    return results.map((result) => this.mapper.toDomain(result as IRecruiterProfileDataAccess));
   }
 }

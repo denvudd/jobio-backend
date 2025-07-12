@@ -46,7 +46,6 @@ export class UpdateRecruiterProfileUseCase
       updateData.telegram ?? recruiterProfile.telegram,
       updateData.phone ?? recruiterProfile.phone,
       updateData.linkedin ?? recruiterProfile.linkedin,
-      updateData.company ?? recruiterProfile.company,
       updateData.website ?? recruiterProfile.website,
       recruiterProfile.createdAt,
       new Date(),

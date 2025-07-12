@@ -4,10 +4,9 @@ import { IGetAllSubcategoriesUseCase } from '~modules/categories/application/use
 import { CategoriesDiToken } from '~modules/categories/constants';
 import { SubCategory } from '~modules/categories/domain/entities/subcategory.entity';
 import { ISubCategoryRepository } from '~modules/categories/domain/repositories/subcategory-repository.interface';
-import { PaginationQueryDto } from '~shared/application/dto/pagination.dto';
-import { PaginationResult } from '~shared/application/models/pagination.model';
 
 import { PaginatedQuery } from '~shared/application/CQS/paginated-query.abstract';
+import { PaginationQueryDto } from '~shared/application/dto/pagination.dto';
 
 @Injectable()
 export class GetAllSubcategoriesUseCase
@@ -25,11 +24,11 @@ export class GetAllSubcategoriesUseCase
     return this.subCategoryRepository.findAll(input);
   }
 
-  protected async getTotal(input: PaginationQueryDto): Promise<number> {
+  protected async getTotal(_input: PaginationQueryDto): Promise<number> {
     return this.subCategoryRepository.count();
   }
 
-  protected getBaseUrl(input: PaginationQueryDto): string {
+  protected getBaseUrl(_input: PaginationQueryDto): string {
     return '/subcategories';
   }
-} 
+}

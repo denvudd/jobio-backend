@@ -24,11 +24,11 @@ export class GetAllCategoriesUseCase
     return this.categoryRepository.findAll(input);
   }
 
-  protected async getTotal(input: PaginationQueryDto): Promise<number> {
+  protected async getTotal(_input: PaginationQueryDto): Promise<number> {
     return this.categoryRepository.count();
   }
 
-  protected getBaseUrl(input: PaginationQueryDto): string {
+  protected getBaseUrl(_input: PaginationQueryDto): string {
     return '/categories';
   }
 } 
