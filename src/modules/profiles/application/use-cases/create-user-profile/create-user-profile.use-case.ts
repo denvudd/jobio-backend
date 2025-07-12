@@ -6,6 +6,7 @@ import { ProfilesDiToken } from '~modules/profiles/constants';
 import { CandidateProfile } from '~modules/profiles/domain/entities/candidate-profile.entity';
 import { RecruiterProfile } from '~modules/profiles/domain/entities/recruiter-profile.entity';
 import { UserDetails } from '~modules/profiles/domain/entities/user-details.entity';
+import { RecruiterProfileCreatedEvent } from '~modules/profiles/domain/events/recruiter-profile-created.event';
 import { ICandidateProfileRepository } from '~modules/profiles/domain/repositories/candidate-profile-repository.interface';
 import { IRecruiterProfileRepository } from '~modules/profiles/domain/repositories/recruiter-profile-repository.interface';
 import { IUserDetailsRepository } from '~modules/profiles/domain/repositories/user-details-repository.interface';
@@ -35,12 +36,24 @@ export class CreateUserProfileUseCase
     const userDetails = UserDetails.builder(userId, role).fullName(fullName).build();
     const savedUserDetails = await this.userDetailsRepository.create(userDetails);
 
-    if (role === UserRole.CANDIDATE) {
-      const candidateProfile = CandidateProfile.builder(savedUserDetails.id).build();
-      await this.candidateProfileRepository.create(candidateProfile);
-    } else if (role === UserRole.RECRUITER) {
-      const recruiterProfile = RecruiterProfile.builder(savedUserDetails.id).build();
-      await this.recruiterProfileRepository.create(recruiterProfile);
+    switch (role) {
+      case UserRole.CANDIDATE: {
+        const candidateProfile = CandidateProfile.builder(savedUserDetails.id).build();
+        await this.candidateProfileRepository.create(candidateProfile);
+        break;
+      }
+      case UserRole.RECRUITER: {
+        const recruiterProfile = RecruiterProfile.builder(savedUserDetails.id).build();
+        const savedRecruiterProfile = await this.recruiterProfileRepository.create(recruiterProfile);
+
+        this._eventDispatcher.registerEvent(
+          new RecruiterProfileCreatedEvent({
+            userId,
+            recruiterProfileId: savedRecruiterProfile.id,
+          }),
+        );
+        break;
+      }
     }
   }
 }

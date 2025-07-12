@@ -5,7 +5,10 @@ import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 import { POSTGRES_DB } from '~lib/drizzle-postgres';
 
 import { CompanyRole } from '~modules/companies/domain/entities/company-role.entity';
-import { CompanyRoleMapper, ICompanyRoleDataAccess } from '~modules/companies/domain/mappers/company-role';
+import {
+  CompanyRoleMapper,
+  ICompanyRoleDataAccess,
+} from '~modules/companies/domain/mappers/company-role/company-role.mapper';
 import { ICompanyRoleRepository } from '~modules/companies/domain/repositories/company-role-repository.interface';
 
 import { IDataAccessMapper } from '~shared/domain/mappers';
@@ -53,4 +56,4 @@ export class DrizzleCompanyRoleRepository
     const result = await this.db.select().from(companyRole);
     return result.length;
   }
-} 
+}

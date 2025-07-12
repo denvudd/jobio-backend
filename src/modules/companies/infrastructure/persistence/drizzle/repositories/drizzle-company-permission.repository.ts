@@ -5,7 +5,10 @@ import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 import { POSTGRES_DB } from '~lib/drizzle-postgres';
 
 import { CompanyPermission } from '~modules/companies/domain/entities/company-permission.entity';
-import { CompanyPermissionMapper, ICompanyPermissionDataAccess } from '~modules/companies/domain/mappers/company-permission';
+import {
+  CompanyPermissionMapper,
+  ICompanyPermissionDataAccess,
+} from '~modules/companies/domain/mappers/company-permission/company-permission.mapper';
 import { ICompanyPermissionRepository } from '~modules/companies/domain/repositories/company-permission-repository.interface';
 
 import { IDataAccessMapper } from '~shared/domain/mappers';

@@ -5,4 +5,5 @@ import { IBaseRepository } from '~shared/domain/repositories/base-repository.int
 export interface ICompanyRoleRepository extends IBaseRepository<CompanyRole, string> {
   findAll(): Promise<CompanyRole[]>;
   deleteAll(): Promise<void>;
+  findByName(name: string): Promise<CompanyRole | null>;
 } 
